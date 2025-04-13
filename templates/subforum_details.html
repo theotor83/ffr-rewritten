@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-<title>Undertale France - {{subforum.title}}</title>
+<title>Le forum Five Nights at Freddy's - {{subforum.title}}</title>
 {% endblock %}
 {% block content %}
 {% load static %}
@@ -17,7 +17,7 @@
     <td align="left" valign="middle" width="50"><a href="{% url 'new-topic' %}?f={{ subforum.id }}">
     <img src="{% static 'images/buttons/new_topic.png' %}" border="0" alt="Poster un nouveau sujet" /></a></td>
 {% endif %}
-<td align="left" valign="middle" class="nav" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{% url 'index' %}" class="nav">Undertale France Index du Forum</a>
+<td align="left" valign="middle" class="nav" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{% url 'index' %}" class="nav">Le forum Five Nights at Freddy's Index du Forum</a>
 -> <a href="{{subforum.category.get_absolute_url}}"
 class="nav">{{subforum.category.name}}</a>
 {% for node in tree %}
@@ -352,7 +352,7 @@ class="nav">{{subforum.category.name}}</a>
     <td align="left" valign="middle" width="50"><a href="{% url 'new-topic' %}?f={{ subforum.id }}">
     <img src="{% static 'images/buttons/new_topic.png' %}" border="0" alt="Poster un nouveau sujet" /></a></td>
 {% endif %}
-<td align="left" valign="middle" width="100%"><span class="nav">   <a href="index.html" class="nav">Undertale France Index du Forum</a>
+<td align="left" valign="middle" width="100%"><span class="nav">   <a href="index.html" class="nav">Le forum Five Nights at Freddy's Index du Forum</a>
 
  -> <a href="{{subforum.category.get_absolute_url}}"
  class="nav">{{subforum.category.name}}</a>

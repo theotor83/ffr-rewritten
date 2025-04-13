@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-<title>Undertale France - Forum français dédié au jeu Undertale.</title>
+<title>Le forum Five Nights at Freddy's</title>
 {% endblock %}
 {% block content %}
 {% load static %}
@@ -109,7 +109,7 @@ td.row1 {
             {% now "D d M - H:i (Y)" as current_time %}
             La date/heure actuelle est {{ current_time|title }}
                 <br /></span><span class="nav"><a href="{% url 'index' %}"
-                    class="nav">Undertale France Index du Forum</a></span></td>
+                    class="nav">Le forum Five Nights at Freddy's Index du Forum</a></span></td>
         <td align="right" valign="bottom" class="gensmall">
 
             <a href="{% url 'search-results' %}?search_id=unanswered&show_results=topics&per_page=50" class="gensmall">Voir les messages sans réponses</a>

@@ -1,6 +1,6 @@
     {% extends "base.html" %}
     {% block title %}
-    <title>Undertale France - {{category.name}}</title>
+    <title>Le forum Five Nights at Freddy's - {{category.name}}</title>
     {% endblock %}
     {% block content %}
     {% load static %}
@@ -20,7 +20,7 @@
                         href="{% url 'new-topic' %}"><img
                             src="{% static 'images/buttons/new_topic.png' %}" border="0" alt="Poster un nouveau sujet" /></a></td>
                 <td align="left" valign="middle" class="nav" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{% url 'index' %}"
-                            class="nav">Undertale France Index du Forum</a>
+                            class="nav">Le forum Five Nights at Freddy's Index du Forum</a>
 
                         -> <a class="nav" href="{{category.get_absolute_url}}">{{category.name}}</a>
 
@@ -337,7 +337,7 @@
                     href="{% url 'new-topic' %}"><img
                         src="{% static 'images/buttons/new_topic.png' %}" border="0" alt="Poster un nouveau sujet" /></a></td>
             <td align="left" valign="middle" class="nav" width="100%"><span class="nav"> <a href="{% url 'index' %}"
-                        class="nav">Undertale France Index du Forum</a>
+                        class="nav">Le forum Five Nights at Freddy's Index du Forum</a>
 
                     -> <a class="nav" href="{{category.get_absolute_url}}">{{category.name}}</a>
 
