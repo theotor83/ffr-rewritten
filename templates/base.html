@@ -37,7 +37,9 @@
     <link rel="search" href="{% url 'search' %}" title="Rechercher">
     <link rel="help" href="{% url 'faq' %}" title="FAQ">
     <link rel="author" href="http://freddy-fazbear.xooit.org/login.php?redirect=memberlist.php" title="Membres">
-    <title>Le forum Five Nights at Freddy's :: Index</title>
+    {% block title %}
+        <title>Le forum Five Nights at Freddy's</title>
+    {% endblock %}
     <link rel="stylesheet" href="{% static 'css/style_utf.css' %}" type="text/css">
     <style type="text/css">
         TH {
