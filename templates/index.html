@@ -16,47 +16,75 @@ td.row1 {
 </style>
 
 <table width="100%" cellspacing="1" border="0" class="forumline">
-    <tr>
-        <th class="thTop" nowrap="nowrap"> You're new to the UNDERGROUND, arent'cha ? </th>
+    <tbody><tr>
+    <th class="thTop" nowrap="nowrap">&nbsp;Bienvenue sur le forum !&nbsp;</th>
     </tr>
     <tr>
-        <td class="row1"> <!-- style=""> -->
-
-            <span class="genmed">
-                <div style="text-align: center">
-                    <br />
-                    {% if request.user.is_authenticated %}
-                        {% with welcome_message="Bienvenue sur le forum Undertale France, [b][color="|add:request.user.profile.get_group_color|add:"]"|add:request.user.username|add:"[/color][/b] !" %}
-                            {{ welcome_message|bbcode|safe }}
-                        {% endwith %}
-                    {% else %}
-                        Bienvenue sur le forum Undertale France, Invité !
-                    {% endif %}
-
-                    <br />
-                    <br />Les nouveaux membres doivent d'abord se présenter dans <a href="{% if presentations %}{{ presentations.get_absolute_url }}{% else %}#{% endif %}"
-                        target="_blank" class="postlink">cette section</a> et lire le règlement disponible <a
-                        href="{% if regles %}{{regles.get_absolute_url}}{% else %}#{% endif %}" target="_blank"
-                        class="postlink">ici</a> pour pouvoir poster sur le forum.
-                    <br />
-                    <br />
-                    <br />Si vous voulez une petite ambiance:
-                    <br />
-                    <br />
-                    <!-- Removed align:center from the style of this div -->
-                    <div width="480" height="270"
-                        style="border:solid; border-color:#aaaaaa;width:480px;margin:0 auto;"> <iframe
-                            src="https://youtube.com/embed/QXmOmkRuHUc?loop=1&amp;autoplay=0&amp;controls=0" width="100%"
-                            height="270" loop="true" frameborder="0"></iframe></div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                </div>
-            </span>
-        </td>
+    <td class="row1" style="">
+    
+    <span class="genmed"><div style="text-align: center"><span style="font-size: 16px; line-height: normal"><span style="font-weight: bold"><span style="color: #ffff00"><span style="text-decoration: underline">???</span></span></span></span>
+    <br>
+    <br>
+    <br>&nbsp;&nbsp;</div><div style="text-align: center"><span style="color: #ffffff"><span style="font-size: 12px; line-height: normal"><span style="text-decoration: underline">Vous devez vous présenter dans la section ??? pour être activé. Sans ça, vous ne pourrez pas poster sur le forum !</span></span>
+    <br>
+    <br>
+    <br><span style="color: #ffffff">Pour vous présenter, cliquez sur ??? puis sur "???" (en haut à gauche). Écrivez votre présentation et postez-la. Ensuite, vous pourrez poster sur le forum !</span><hr style="width:100%;"></span>&nbsp;</div>
+    <br>
+    <br>
+    <br><div style="text-align: center"><span style="font-size: 12px; line-height: normal"><span style="color: #00ffff"><span style="text-decoration: underline">???</span></span></span>
+    <br>
+    <br><span style="color: #ffffff"><span style="font-size: 12px; line-height: normal"><a href="../img.xooimage.com/files110/f/5/d/tuto-pdp-4ecb21d.png" target="_blank" class="postlink">Changer sa photo de profil</a>&nbsp;&nbsp;&nbsp;<a href="../img.xooimage.com/files110/3/c/b/tuto-image-4ecb213.png" target="_blank" class="postlink">Poster une image depuis une page internet</a>&nbsp;&nbsp;&nbsp;<a href="../img.xooimage.com/files110/1/d/d/tuto-image-pc-2-4ecb20a.png" target="_blank" class="postlink">Poster une image depuis son PC</a></span></span>
+    <br>
+    <br><hr style="width:100%;">
+    <br>
+    <br><span style="text-decoration: underline"><span style="font-size: 12px; line-height: normal">???</span></span>
+    <br><span style="color: #ffffff"><span style="font-weight: bold">(cliquez sur connexion pour tchatter)</span></span>
+    <br><span style="font-size: 16px; line-height: normal">⇩⇩</span>
+    <br>&nbsp;
+    <br>&nbsp;</div></span>
+    
+    </td>
     </tr>
+    </tbody></table>
+<br>
+<div class="panel bg2"><div class="inner"><span class="corners-top"><span></span></span>
+<table class="forumline forum-table" border="0" cellspacing="1" width="100%">
+<tbody><tr>
+<th class="thTop" nowrap="nowrap" colspan="3">&nbsp;Chat&nbsp;</th>
+</tr>
+<tr class="bg2">
+<td class="row3" style="padding:3px" colspan="3">
+<div id="chatTopic" class="genmed" style="font-weight:bold">
+<div id="chatArchiveLink" style="display:none;float:right">
+<a href="javascript:void(0);">[Archives]</a>
+</div>
+
+</div>
+</td>
+</tr>
+<tr class="bg1" style="width:100%">
+<td class="row1" style="padding:0;width:100%">
+<div id="chatList" style="height:100px;overflow:auto;width:100%">
+<table id="chatMsgContainer_table" class="forumline" border="0" cellspacing="1" width="100%" style="border:0">
+<tbody id="chatMsgContainer">
+</tbody>
 </table>
+<div><input type="button" value="Charger le chat" onclick="gtag('event', 'btn_show_chat'); loadXooitChat(); var o = this.parentNode; o.parentNode.removeChild(o); document.cookie = 'autoLoadChat=1;path=/';" class="mainoption button2" style="margin: 40px 20px;"></div></div>
+</td>
+
+<td id="chatGripTd" class="row2" style="width:3px;cursor:w-resize">&nbsp;</td>
+<td class="row1" style="vertical-align:top">
+<div id="chatConnectedDiv" style="width:100%;height:150px;overflow:auto"></div>
+</td>
+
+</tr>
+<tr class="bg2">
+<td class="row1" colspan="3">
+<img src="../img.xooimage.com/files5/d/6/7/grip-115818.gif" width="11" height="11" alt="resize" style="cursor:n-resize;float:right;padding-top:10px" id="chatVGrip" title="Redimensionner le chat"><img src="../img.xooimage.com/files10/5/e/a/window-115821.gif" style="cursor:pointer;padding-top:10px;padding-right:3px;width:11px;height:11px;float:right;" onclick="window.open('chat2.html','_blank','menubar=no,toolbar=no,resizable=yes,scrollbars=yes');" title="Ouvrir le chat dans une nouvelle fenêtre" id="chatPopupButton"><input id="chatButtonF" type="button" class="liteoption button2" style="background-position:center;background-repeat:no-repeat" title="Jouer un son lors de l’arrivée d’un nouveau message" value=" "><input id="chatButtonG" type="button" class="liteoption button2" style="font-weight:bold" title="Mettre vos messages en gras par défaut. Vous pouvez aussi utiliser le BBCode normal pour formater votre message." value=" G "><input id="chatButtonI" type="button" class="liteoption button2" style="font-style:italic" title="Mettre vos messages en italic par défaut. Vous pouvez aussi utiliser le BBCode normal pour formater votre message." value=" I "><input id="chatButtonC" type="button" class="liteoption button2" style="background:url(../img.xooimage.com/files5/c/o/color-58b80.gif) no-repeat center" title="Modifier la couleur par défaut de vos messages. Vous pouvez aussi utiliser le BBCode normal pour formater votre message." value=" "><input type="text" id="chatMsg" class="post inputbox" style="width:70%" maxlength="100"><input type="button" value="Envoyer" onclick="xooitChat.sendMsg();" class="mainoption button2"> <input type="button" value="Smilies" onclick="xooitChat.showSmilies();" class="mainoption button2">
+</td>
+</tr>
+</tbody></table>
+<span class="corners-bottom"><span></span></span></div></div>
 <!-- //-->
 <!-- <div style="text-align:center;margin:1em 0;"> <iframe src="pubd4eb.html?cc=0&amp;f=728x90&amp;rp=1&amp;p=728x90_header&amp;ci=113&amp;&amp;id=f901f073d4bc487425e52ecaa37f6346&amp;crtg_content=empty" style="display: inline !important; visibility: visible !important; border: 0; width: 728px; height: 110px;" frameborder="0" scrolling="no" allowTransparency="true" id="f901f073d4bc487425e52ecaa37f6346"></iframe> <script type="text/javascript"> /* missing js */ </script> </div> --><!-- //-->
 <style>
