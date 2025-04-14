@@ -426,9 +426,9 @@ Votre présentation est à poster ici en cliquant sur "NOUVEAU POST".""")
             current.save()
             current = current.parent
 
-    admin.profile.messages_count += 2
+    admin.profile.messages_count += 1
     admin.profile.save()
-    UTF.total_messages += 2
+    UTF.total_messages += 1
     UTF.total_users += 1
     UTF.save()
 
