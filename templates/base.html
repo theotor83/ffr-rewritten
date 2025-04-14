@@ -150,9 +150,12 @@
                                                         </a></span>
 
                                                     <noscript>Se connecter pour vérifier ses messages privés</noscript>
-                                                    &nbsp; &nbsp;<a href="{% url 'login-view' %}"
-                                                        class="mainmenu"><img src="{% static 'images/head/co.png' %}"
-                                                            border="0" alt="Connexion" hspace="3">Connexion</a>&nbsp;
+                                                    &nbsp; &nbsp;{% if request.user.is_authenticated %}<a href="{% url 'logout-view' %}"
+                                                        class="mainmenu"><img src="{% static 'images/head/deco.png' %}"
+                                                            border="0" alt="Déconnexion" hspace="3">Déconnexion</a>
+                                                    {% else %}<a href="{% url 'login-view' %}"
+                                                            class="mainmenu"><img src="{% static 'images/head/co.png' %}"
+                                                                border="0" alt="Connexion" hspace="3">Connexion</a>{% endif %}&nbsp;
                                                 </td>
                                             </tr>
                                         </tbody>
