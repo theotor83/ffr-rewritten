@@ -38,72 +38,72 @@ def create_user_and_profile(apps, schema_editor):
     UTF.save()
 
     # Create all the ForumGroups
-    if ForumGroup.objects.filter(name="Outsider").exists():
-        outsider_group = ForumGroup.objects.get(name="Outsider")
+    if ForumGroup.objects.filter(name="Non présenté").exists():
+        non_presente_group = ForumGroup.objects.get(name="Non présenté")
     else:
-        outsider_group = ForumGroup.objects.create(name="Outsider", priority=10, description="""Membres ne s'étant pas encore présentés.
-Nombre de messages : 0.""", is_messages_group=True, minimum_messages=0, color="#847B7E")
+        non_presente_group = ForumGroup.objects.create(name="Non présenté", priority=10, description="""Personnes n'ayant pas encore posté leur présentation. POSTEZ-LA AU LIEU DE LIRE ÇA""",
+        is_messages_group=True, minimum_messages=0, color="#808383")
         
-    outsider_group.save()
+    non_presente_group.save()
     
-    if ForumGroup.objects.filter(name="Fallen Child").exists():
-        fallen_child_group = ForumGroup.objects.get(name="Fallen Child")
+    if ForumGroup.objects.filter(name="Nouveau garde de nuit").exists():
+        nouveau_garde_groupe = ForumGroup.objects.get(name="Nouveau garde de nuit")
     else:
-        fallen_child_group = ForumGroup.objects.create(name="Fallen Child", priority=20, description="""Nouveaux sur le forum.
-Nombre de messages : de 1 à 49.""", is_messages_group=True, minimum_messages=1, color="#FFFFFF")
+        nouveau_garde_groupe = ForumGroup.objects.create(name="Nouveau garde de nuit", priority=20, description="""Membres inscrits récemment.""",
+        is_messages_group=True, minimum_messages=1, color="#FFFFFF")
         
-    fallen_child_group.save()
+    nouveau_garde_groupe.save()
 
-    if ForumGroup.objects.filter(name="You're blue now !").exists():
-        blue_group = ForumGroup.objects.get(name="You're blue now !")
+    if ForumGroup.objects.filter(name="Employé").exists():
+        employe_group = ForumGroup.objects.get(name="Employé")
     else:
-        blue_group = ForumGroup.objects.create(name="You're blue now !", priority=30, description="""That's my attack !
-Nombre de messages : de 50 à 199.""", is_messages_group=True, minimum_messages=50, color="#859BFD")
+        employe_group = ForumGroup.objects.create(name="Employé", priority=30, description="""Membres actifs.
+(Plus de 30 messages)""", is_messages_group=True, minimum_messages=30, color="#A1D384")
         
-    blue_group.save()
+    employe_group.save()
         
-    if ForumGroup.objects.filter(name="Made of Fire").exists():
-        fire_group = ForumGroup.objects.get(name="Made of Fire")
+    if ForumGroup.objects.filter(name="Animatronique").exists():
+        animatronique_group = ForumGroup.objects.get(name="Animatronique")
     else:
-        fire_group = ForumGroup.objects.create(name="Made of Fire", priority=40, description="""Membres confirmés.
-Nombre de messages : de 200 à 999.""", is_messages_group=True, minimum_messages=200, color="#EA8C14")
-        
-    if ForumGroup.objects.filter(name="Real Spider").exists():
-        spider_group = ForumGroup.objects.get(name="Real Spider")
-    else:
-        spider_group = ForumGroup.objects.create(name="Real Spider", priority=50, description="""[color=#993399]I heard they like posting~[/color]
+        animatronique_group = ForumGroup.objects.create(name="Animatronique", priority=40, description="""Membres ayant plus de 60 messages.""",
+        is_messages_group=True, minimum_messages=60, color="#33AD6D")
 
-Membres assidus.
-Nombre de messages : de 1000 à 2999.""", is_messages_group=True, minimum_messages=1000, color="#8F1C93")
-        
-    if ForumGroup.objects.filter(name="It's showtime !").exists():
-        showtime_group = ForumGroup.objects.get(name="It's showtime !")
-    else:
-        showtime_group = ForumGroup.objects.create(name="It's showtime !", priority=60, description="""Membres d'honneur.
-Nombre de messages : de 2000 à 4999.""", is_messages_group=True, minimum_messages=2000, color="#F4D400")
-        
-    if ForumGroup.objects.filter(name="Hopeful Dreamer").exists():
-        dreamer_group = ForumGroup.objects.get(name="Hopeful Dreamer")
-    else:
-        dreamer_group = ForumGroup.objects.create(name="Hopeful Dreamer", priority=70, description="""Membre, euh... TRÈS déterminé ?
-Nombre de messages : 5000 ou plus.""", is_messages_group=True, minimum_messages=5000, color="#FF00CC")
-        
-    if ForumGroup.objects.filter(name="Royal Guard Apprentice").exists():
-        apprentice_group = ForumGroup.objects.get(name="Royal Guard Apprentice")
-    else:
-        apprentice_group = ForumGroup.objects.create(name="Royal Guard Apprentice", priority=80, description="""Modérateurs ChatBox.""", is_messages_group=False, minimum_messages=999999, color="#2D3EDF")
+    animatronique_group.save()
 
-    if ForumGroup.objects.filter(name="Royal Guard").exists():
-       guard_group = ForumGroup.objects.get(name="Royal Guard")
+        
+    if ForumGroup.objects.filter(name="Springlock").exists():
+        springlock_group = ForumGroup.objects.get(name="Springlock")
     else:
-       guard_group = ForumGroup.objects.create(name="Royal Guard", priority=90, description="""Make her a member of the Royal Guard ♫
+        springlock_group = ForumGroup.objects.create(name="Springlock", priority=50, description="""Membres très investis.
+(Plus de 150 messages)""", is_messages_group=True, minimum_messages=150, color="#04BDBD")
+        
+    springlock_group.save()
 
-Modérateurs Forum.""", is_messages_group=False, is_staff_group=True, minimum_messages=999999, color="#289331")
-       
-    if ForumGroup.objects.filter(name="Determination").exists():
-       determination_group = ForumGroup.objects.get(name="Determination")
+        
+    if ForumGroup.objects.filter(name="Théoricien").exists():
+        theoricien_group = ForumGroup.objects.get(name="Théoricien")
     else:
-       determination_group = ForumGroup.objects.create(name="Determination", priority=100, description="""Administrateurs.""", is_messages_group=False, is_staff_group=True, minimum_messages=999999, color="#C02200")
+        theoricien_group = ForumGroup.objects.create(name="Théoricien", priority=60, description="""Membres actifs s'investissant beaucoup dans les théories. (Ne floodez pas la section Théories avec des théories baclées juste pour obtenir ce grade, ça se voit)""",
+        is_messages_group=False, minimum_messages=999999, color="#FFB200")
+    
+    theoricien_group.save()
+
+        
+    if ForumGroup.objects.filter(name="Modérateur").exists():
+        moderateur_group = ForumGroup.objects.get(name="Modérateur")
+    else:
+        moderateur_group = ForumGroup.objects.create(name="Modérateur", priority=70, description="""Cherchez pas à rejoindre, vu le nombre de membres actuel, il y a pas grand-chose à modérer. :chica:""",
+        is_messages_group=False, is_staff_group=True, minimum_messages=999999, color="#F40400")
+    
+    moderateur_group.save()
+        
+    if ForumGroup.objects.filter(name="Administrateur").exists():
+        admin_group = ForumGroup.objects.get(name="Administrateur")
+    else:
+        admin_group = ForumGroup.objects.create(name="Administrateur", priority=80, description="""On est des dieux.""",
+        is_messages_group=False, is_staff_group=True, minimum_messages=999999, color="#B10000")
+    
+    admin_group.save()
 
     # Create the User with a hashed password
     admin = User.objects.create_user(
@@ -122,263 +122,173 @@ Modérateurs Forum.""", is_messages_group=False, is_staff_group=True, minimum_me
         type='neutral',
     )
 
-    # Add admin to every group
-    admin.profile.groups.add(outsider_group, fallen_child_group, blue_group, fire_group, spider_group, showtime_group, dreamer_group, apprentice_group, guard_group, determination_group)
+    # Add admin to 
+    admin.profile.groups.add(non_presente_group, nouveau_garde_groupe, employe_group, animatronique_group, springlock_group, theoricien_group, moderateur_group, admin_group)
     admin.save()
     admin.profile.save()
 
     # Create the default categories
-    if Category.objects.filter(name="RUINS").exists():
-        ruins_category = Category.objects.get(name="RUINS")
+    if Category.objects.filter(name="Présentation").exists():
+        presentation_category = Category.objects.get(name="Présentation")
     else:
-        ruins_category = Category.objects.create(name="RUINS", slug="ruins")
+        presentation_category = Category.objects.create(name="Présentation", slug="Pr-sentation")
 
-    if Category.objects.filter(name="Snowdin").exists():
-        snowdin_category = Category.objects.get(name="Snowdin")
+    if Category.objects.filter(name="Five Nights At Freddy's").exists():
+        fnaf_category = Category.objects.get(name="Five Nights At Freddy's")
     else:
-        snowdin_category = Category.objects.create(name="Snowdin", slug="snowdin")
+        fnaf_category = Category.objects.create(name="Five Nights At Freddy's", slug="five-nights-at-freddy-s")
 
-    if Category.objects.filter(name="Waterfall").exists():
-        waterfall_category = Category.objects.get(name="Waterfall")
+    if Category.objects.filter(name="Les jeux").exists():
+        jeux_category = Category.objects.get(name="Les jeux")
     else:
-        waterfall_category = Category.objects.create(name="Waterfall", slug="waterfall")
+        jeux_category = Category.objects.create(name="Les jeux", slug="Les-jeux")
 
-    if Category.objects.filter(name="Hotland").exists():
-        hotland_category = Category.objects.get(name="Hotland")
+    if Category.objects.filter(name="admin_only").exists():
+        admin_only_category = Category.objects.get(name="admin_only")
     else:
-        hotland_category = Category.objects.create(name="Hotland", slug="hotland")
-
-    if Category.objects.filter(name="Surface").exists():
-        surface_category = Category.objects.get(name="Surface")
-    else:
-        surface_category = Category.objects.create(name="Surface", slug="surface")
-
-    if Category.objects.filter(name="room_mysteryman").exists():
-        mysteryman_category = Category.objects.get(name="room_mysteryman")
-    else:
-        mysteryman_category = Category.objects.create(name="room_mysteryman", slug="room_mysteryman", is_hidden=True)
+        admin_only_category = Category.objects.create(name="admin_only", slug="admin_only", is_hidden=True)
 
     # Create the default subforums
 
-    #RUINS
-    if Topic.objects.filter(title="Règles du forum et Annonces").exists():
-        rules_subforum = Topic.objects.get(title="Règles du forum et Annonces")
+    # Présentation
+    if Topic.objects.filter(title="Présente-toi ici !").exists():
+        presente_toi_subforum = Topic.objects.get(title="Présente-toi ici !")
     else:
-        rules_subforum = Topic.objects.create(author=admin,
-                                           title="Règles du forum et Annonces",
-                                           description="Les règles sont à lire avant de poster. Vous trouverez également les annonces du staff du forum.",
-                                           slug="regles-du-forum-et-annonces",
-                                           category=ruins_category,
+        presente_toi_subforum = Topic.objects.create(author=admin,
+                                           title="Présente-toi ici !",
+                                           description="Pour pouvoir être activé, tu dois te présenter.",
+                                           slug="Pr-sente-toi-ici",
+                                           category=presentation_category,
                                            is_sub_forum=True,
-                                           is_locked=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Présentations").exists():
-        presentations_topic = Topic.objects.get(title="Présentations")
-    else:
-        presentations_topic = Topic.objects.create(author=admin,
-                                           title="Présentations",
-                                           description="Se présenter est obligatoire pour pouvoir accéder au reste du forum.",
-                                           slug="presentations",
-                                           category=ruins_category,
-                                           is_sub_forum=True,
-                                            is_index_topic=True)
-        
-    #Snowdin
-    if Topic.objects.filter(title="Aide et idées").exists():
-        help_topic = Topic.objects.get(title="Aide et idées")
-    else:
-        help_topic = Topic.objects.create(author=admin,
-                                           title="Aide et idées",
-                                           description="Besoin d'aide ou conseils pour un passage du jeu ? Des choses à proposer pour tester en jeu ? C'est ici.",
-                                           slug="aide-et-idees",
-                                           category=snowdin_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Tuto / Astuces").exists():
-        tutorial_topic = Topic.objects.get(title="Tuto / Astuces")
-    else:
-        tutorial_topic = Topic.objects.create(author=admin,
-                                           title="Tuto / Astuces",
-                                           description="Si vous avez trouvé une astuce (permettant, par exemple, de faciliter une étape du jeu), vous pouvez partager ici.",
-                                           slug="tuto-astuces",
-                                           category=snowdin_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    #Waterfall
-    if Topic.objects.filter(title="Easter eggs").exists():
-        easter_eggs_topic = Topic.objects.get(title="Easter eggs")
-    else:
-        easter_eggs_topic = Topic.objects.create(author=admin,
-                                           title="Easter eggs",
-                                           description="Vous avez trouvé un easter egg, un secret (avec la fun value par exemple) ? Venez partager !",
-                                           slug="easter-eggs",
-                                           category=waterfall_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Espace technique").exists():
-        espace_technique_topic = Topic.objects.get(title="Espace technique")
-    else:
-        espace_technique_topic = Topic.objects.create(author=admin,
-                                           title="Espace technique",
-                                           description="Tout ce qui concerne les fichiers du jeu, les mods, fichiers, etc.",
-                                           slug="espace-technique",
-                                           category=waterfall_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    #Hotland
-    if Topic.objects.filter(title="Discussions générales").exists():
-        discussions_generales_topic = Topic.objects.get(title="Discussions générales")
-    else:
-        discussions_generales_topic = Topic.objects.create(author=admin,
-                                           title="Discussions générales",
-                                           description="Parlez d'à peu près n'importe quoi en rapport avec les jeux.",
-                                           slug="discussions-generales",
-                                           category=hotland_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Théories").exists():
-        theories_topic = Topic.objects.get(title="Théories")
-    else:
-        theories_topic = Topic.objects.create(author=admin,
-                                           title="Théories",
-                                           description="Venez exposer des théories sur Undertale. Vérifiez que la théorie n'a pas déjà été postée. (Attention: Spoilers)",
-                                           slug="theories",
-                                           category=hotland_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Fangames / Unitale").exists():
-        fangames_topic = Topic.objects.get(title="Fangames / Unitale")
-    else:
-        fangames_topic = Topic.objects.create(author=admin,
-                                           title="Fangames / Unitale",
-                                           description="Venez parler de fangames en rapport avec Undertale, ou d'Unitale et ses scripts.",
-                                           slug="fangames-unitale",
-                                           category=hotland_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Médias").exists():
-        medias_topic = Topic.objects.get(title="Médias")
-    else:
-        medias_topic = Topic.objects.create(author=admin,
-                                           title="Médias",
-                                           description="Undertale et son OST, ses fan-vidéos, images, YTPMV, shitposts, etc.",
-                                           slug="medias",
-                                           category=hotland_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Création").exists():
-        creation_topic = Topic.objects.get(title="Création")
-    else:
-        creation_topic = Topic.objects.create(author=admin,
-                                           title="Création",
-                                           description="Pour tout ce que vous avez créé à propos d'Undertale.",
-                                           slug="creation",
-                                           category=hotland_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    #Surface
-    if Topic.objects.filter(title="Section libre").exists():
-        section_libre_topic = Topic.objects.get(title="Section libre")
-    else:
-        section_libre_topic = Topic.objects.create(author=admin,
-                                           title="Section libre",
-                                           description="Parlez de (presque) tout ce que vous voulez ici (en dehors d'Undertale).",
-                                           slug="section-libre",
-                                           category=surface_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Jeux").exists():
-        jeux_topic = Topic.objects.get(title="Jeux")
-    else:
-        jeux_topic = Topic.objects.create(author=admin,
-                                           title="Jeux",
-                                           description="Venez proposer vos jeux ou roleplays ici.",
-                                           slug="jeux",
-                                           category=surface_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Membres").exists():
-        membres_topic = Topic.objects.get(title="Membres")
-    else:
-        membres_topic = Topic.objects.create(author=admin,
-                                           title="Membres",
-                                           description="Tout ce qui est en rapport avec les membres de ce forum.",
-                                           slug="membres",
-                                           category=surface_category,
-                                           is_sub_forum=True,
-                                           is_index_topic=True)
-        
-    if Topic.objects.filter(title="Sondages").exists():
-        sondages_topic = Topic.objects.get(title="Sondages")
-    else:
-        sondages_topic = Topic.objects.create(author=admin,
-                                           title="Sondages",
-                                           description="Faites des sondages ! Pour les sondages sur Undertale allez plutôt dans la section discussions.",
-                                           slug="sondages",
-                                           category=surface_category,
-                                           is_sub_forum=True,
+                                           is_locked=False,
                                            is_index_topic=True)
 
-    if Topic.objects.filter(title="Pubs").exists():
-        pubs_topic = Topic.objects.get(title="Pubs")
+        
+    # Five Nights At Freddy's
+    if Topic.objects.filter(title="Théories").exists():
+        theories_subforum = Topic.objects.get(title="Théories")
     else:
-        pubs_topic = Topic.objects.create(author=admin,
-                                           title="Pubs",
-                                           description="Venez présenter votre chaîne, site, etc... ici et nulle part ailleurs.",
-                                           slug="pubs",
-                                           category=surface_category,
+        theories_subforum = Topic.objects.create(author=admin,
+                                           title="Théories",
+                                           description="Venez présenter vos théories ! Pour les théories sur les fangames, mettez une [balise] contenant le nom du jeu dans le titre.",
+                                           slug="Th-ories",
+                                           category=fnaf_category,
                                            is_sub_forum=True,
                                            is_index_topic=True)
         
-    # Create the default nested subforums (only RolePlay)
-    if Topic.objects.filter(title="RolePlay").exists():
-        roleplay_topic = Topic.objects.get(title="RolePlay")
+    if Topic.objects.filter(title="Animatroniques").exists():
+        animatroniques_subforum = Topic.objects.get(title="Animatroniques")
     else:
-        roleplay_topic = Topic.objects.create(author=admin,
-                                           title="RolePlay",
-                                           description="Pour vos jeux de rôle.",
-                                           slug="roleplay",
-                                           category=surface_category,
-                                           parent=jeux_topic,
-                                           is_sub_forum=True)
+        animatroniques_subforum = Topic.objects.create(author=admin,
+                                           title="Animatroniques",
+                                           description="Blabla sur les animatroniques.",
+                                           slug="Animatroniques",
+                                           category=fnaf_category,
+                                           is_sub_forum=True,
+                                           is_index_topic=True)
+        
+    if Topic.objects.filter(title="Dessins et Fanarts").exists():
+        dessins_subforum = Topic.objects.get(title="Dessins et Fanarts")
+    else:
+        dessins_subforum = Topic.objects.create(author=admin,
+                                           title="Dessins et Fanarts",
+                                           description="Montrez-nous vos dessins et Fanarts de Five Nights at Freddy's. Venez les poster ici !",
+                                           slug="Dessins",
+                                           category=fnaf_category,
+                                           is_sub_forum=True,
+                                           is_index_topic=True)
+        
+    
+        
+    # Les jeux
+    if Topic.objects.filter(title="Five Nights At Freddy's").exists():
+        fnaf_1_subforum = Topic.objects.get(title="Five Nights At Freddy's")
+    else:
+        fnaf_1_subforum = Topic.objects.create(author=admin,
+                                           title="Five Nights At Freddy's",
+                                           description="Discussions sur FNaF 1: gameplay, astuces, etc.",
+                                           slug="Five-Nights-At-Freddy-s",
+                                           category=jeux_category,
+                                           is_sub_forum=True,
+                                           is_index_topic=True)
+        
+    if Topic.objects.filter(title="Five Nights At Freddy's 2").exists():
+        fnaf_2_subforum = Topic.objects.get(title="Five Nights At Freddy's 2")
+    else:
+        fnaf_2_subforum = Topic.objects.create(author=admin,
+                                           title="Five Nights At Freddy's 2",
+                                           description="Discussions sur FNaF 2: gameplay, astuces, etc.",
+                                           slug="Five-Nights-At-Freddy-s-2",
+                                           category=jeux_category,
+                                           is_sub_forum=True,
+                                           is_index_topic=True)
+        
+    if Topic.objects.filter(title="Five Nights At Freddy's 3").exists():
+        fnaf_3_subforum = Topic.objects.get(title="Five Nights At Freddy's 3")
+    else:
+        fnaf_3_subforum = Topic.objects.create(author=admin,
+                                           title="Five Nights At Freddy's 3",
+                                           description="Discussions sur FNaF 3: gameplay, astuces, etc.",
+                                           slug="Five-Nights-At-Freddy-s-3",
+                                           category=jeux_category,
+                                           is_sub_forum=True,
+                                           is_index_topic=True)
+        
+    if Topic.objects.filter(title="Five Nights At Freddy's 4").exists():
+        fnaf_4_subforum = Topic.objects.get(title="Five Nights At Freddy's 4")
+    else:
+        fnaf_4_subforum = Topic.objects.create(author=admin,
+                                           title="Five Nights At Freddy's 4",
+                                           description="Discussions sur FNaF 4.",
+                                           slug="Five-Nights-At-Freddy-s-4",
+                                           category=jeux_category,
+                                           is_sub_forum=True,
+                                           is_index_topic=True)
+        
+    if Topic.objects.filter(title="FNaF World").exists():
+        fnaf_world_subforum = Topic.objects.get(title="FNaF World")
+    else:
+        fnaf_world_subforum = Topic.objects.create(author=admin,
+                                           title="FNaF World",
+                                           description="Discussions sur le RPG FNaF World !",
+                                           slug="FNaF-World",
+                                           category=jeux_category,
+                                           is_sub_forum=True,
+                                           is_index_topic=True)
+        
+    if Topic.objects.filter(title="Les Fan-Games").exists():
+        fangames_subforum = Topic.objects.get(title="Les Fan-Games")
+    else:
+        fangames_subforum = Topic.objects.create(author=admin,
+                                           title="Les Fan-Games",
+                                           description="Discussions sur les fangames de Five Nights at Freddy's.",
+                                           slug="Copies-du-jeu",
+                                           category=jeux_category,
+                                           is_sub_forum=True,
+                                           is_index_topic=True)
+        
+    if Topic.objects.filter(title="Sister Location").exists():
+        sister_location_subforum = Topic.objects.get(title="Sister Location")
+    else:
+        sister_location_subforum = Topic.objects.create(author=admin,
+                                           title="Sister Location",
+                                           description="Le spinoff de Five Nights at Freddy's, Sister Location.",
+                                           slug="Sister-Location",
+                                           category=jeux_category,
+                                           is_sub_forum=True,
+                                           is_index_topic=True) 
+        
         
     # Create the default topics
 
-    if Topic.objects.filter(title="[A LIRE AVANT DE POSTER] Règlement du forum.").exists():
-        rules_topic = Topic.objects.get(title="[A LIRE AVANT DE POSTER] Règlement du forum.")
+    if Topic.objects.filter(title="Modèle de présentation").exists():
+        presentation_topic = Topic.objects.get(title="Modèle de présentation")
     else:
-        rules_topic = Topic.objects.create(author=admin,
-                                           title="[A LIRE AVANT DE POSTER] Règlement du forum.",
-                                           slug="a-lire-avant-de-poster-reglement-du-forum",
-                                           category=ruins_category,
-                                           parent=rules_subforum,
-                                           is_sub_forum=False,
-                                           is_locked=True,
-                                           is_pinned=False,
-                                           is_announcement=True,
-                                           is_index_topic=False,
-                                           )
-        
-    if Topic.objects.filter(title="Guide des balises").exists():
-        balises_topic = Topic.objects.get(title="Guide des balises")
-    else:
-        balises_topic = Topic.objects.create(author=admin,
-                                           title="Guide des balises",
-                                           slug="guide-des-balises",
-                                           category=ruins_category,
-                                           parent=rules_subforum,
+        presentation_topic = Topic.objects.create(author=admin,
+                                           title="Modèle de présentation",
+                                           slug="Mod-le-de-pr-sentation",
+                                           category=presentation_category,
+                                           parent=presente_toi_subforum,
                                            is_sub_forum=False,
                                            is_locked=True,
                                            is_pinned=True,
@@ -386,86 +296,114 @@ Modérateurs Forum.""", is_messages_group=False, is_staff_group=True, minimum_me
                                            is_index_topic=False,
                                            )
         
+        
     # Create the default posts
 
-    if Post.objects.filter(text="""Regle du forum undertale france:
+    if Post.objects.filter(text="""Modèle de présentation (vous n'êtes en aucun cas obligés de le suivre):
 
-1- On ne doit pas manquer le respect au autre membres du serveur.
+[b][u]Prénom:[/u][/b]
 
-2-  Ne pas floodé
+[b][u]Âge:[/u][/b]
 
-3- ne pas faire de PUB 
+[b][u]Loisirs:[/u][/b]
 
-4- et ne pas mentionner les modérateur sans raisons""",author=admin).exists():
-        rules_post = Post.objects.get(text="""Regle du forum undertale france:
 
-1- On ne doit pas manquer le respect au autre membres du serveur.
 
-2-  Ne pas floodé
+Si vous avez déjà joué à FNaF:
+[b][u]Opus préféré de FNaF:[/u][/b]
 
-3- ne pas faire de PUB 
 
-4- et ne pas mentionner les modérateur sans raisons""",author=admin)
+[b][u]Personnage préféré de FNaF:[/u][/b]
+
+
+
+[b][u]Question/Remarque/Commentaire:[/u][/b]
+
+
+
+
+
+Votre présentation est à poster ici en cliquant sur "NOUVEAU POST".""",author=admin).exists():
+        presentation_post = Post.objects.get(text="""Modèle de présentation (vous n'êtes en aucun cas obligés de le suivre):
+
+[b][u]Prénom:[/u][/b]
+
+[b][u]Âge:[/u][/b]
+
+[b][u]Loisirs:[/u][/b]
+
+
+
+Si vous avez déjà joué à FNaF:
+[b][u]Opus préféré de FNaF:[/u][/b]
+
+
+[b][u]Personnage préféré de FNaF:[/u][/b]
+
+
+
+[b][u]Question/Remarque/Commentaire:[/u][/b]
+
+
+
+
+
+Votre présentation est à poster ici en cliquant sur "NOUVEAU POST".""",author=admin)
     else:
-        rules_post = Post.objects.create(author=admin,
-                                           topic=rules_topic,
-                                           text="""Regle du forum undertale france:
+        presentation_post = Post.objects.create(author=admin,
+                                           topic=presentation_topic,
+                                           text="""Modèle de présentation (vous n'êtes en aucun cas obligés de le suivre):
 
-1- On ne doit pas manquer le respect au autre membres du serveur.
+[b][u]Prénom:[/u][/b]
 
-2-  Ne pas floodé
+[b][u]Âge:[/u][/b]
 
-3- ne pas faire de PUB 
+[b][u]Loisirs:[/u][/b]
 
-4- et ne pas mentionner les modérateur sans raisons""")
-        
-    if Post.objects.filter(text="""Un petit guide des balises que vous pouvez utiliser sur le forum: j'ai oublié""",author=admin).exists():
-        balises_post = Post.objects.get(text="""Un petit guide des balises que vous pouvez utiliser sur le forum: j'ai oublié""",author=admin)
-    else:
-        balises_post = Post.objects.create(author=admin,
-                                           topic=balises_topic,
-                                           text="""Un petit guide des balises que vous pouvez utiliser sur le forum: j'ai oublié""")
-        
 
+
+Si vous avez déjà joué à FNaF:
+[b][u]Opus préféré de FNaF:[/u][/b]
+
+
+[b][u]Personnage préféré de FNaF:[/u][/b]
+
+
+
+[b][u]Question/Remarque/Commentaire:[/u][/b]
+
+
+
+
+
+Votre présentation est à poster ici en cliquant sur "NOUVEAU POST".""")
         
     # Save everything just in case
-    outsider_group.save()
-    fallen_child_group.save()
-    blue_group.save()
-    fire_group.save()
-    spider_group.save()
-    showtime_group.save()
-    dreamer_group.save()
-    apprentice_group.save()
-    guard_group.save()
-    determination_group.save()
-    ruins_category.save()
-    snowdin_category.save()
-    waterfall_category.save()
-    hotland_category.save()
-    surface_category.save()
-    mysteryman_category.save()
-    rules_subforum.save()
-    presentations_topic.save()
-    help_topic.save()
-    tutorial_topic.save()
-    easter_eggs_topic.save()
-    espace_technique_topic.save()
-    discussions_generales_topic.save()
-    theories_topic.save()
-    fangames_topic.save()
-    medias_topic.save()
-    creation_topic.save()
-    section_libre_topic.save()
-    jeux_topic.save()
-    membres_topic.save()
-    sondages_topic.save()
-    pubs_topic.save()
-    roleplay_topic.save()
-    rules_topic.save()
-    balises_topic.save()
-    rules_post.save()
-    balises_post.save()
+    non_presente_group.save()
+    nouveau_garde_groupe.save()
+    employe_group.save()
+    animatronique_group.save()
+    springlock_group.save()
+    theoricien_group.save()
+    moderateur_group.save()
+    admin_group.save()
+    presentation_category.save()
+    fnaf_category.save()
+    jeux_category.save()
+    admin_only_category.save()
+    presente_toi_subforum.save()
+    theories_subforum.save()
+    animatroniques_subforum.save()
+    dessins_subforum.save()
+    fnaf_1_subforum.save()
+    fnaf_2_subforum.save()
+    fnaf_3_subforum.save()
+    fnaf_4_subforum.save()
+    fnaf_world_subforum.save()
+    fangames_subforum.save()
+    sister_location_subforum.save()
+    presentation_topic.save()
+    presentation_post.save()
 
     for topic in Topic.objects.all():
         topic.total_replies += 1

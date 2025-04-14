@@ -329,8 +329,8 @@ def register(request):
             profile.save()
 
             try:
-                outsider_group = ForumGroup.objects.get(name="Outsider")
-                profile.groups.add(outsider_group)
+                non_presente_group = ForumGroup.objects.get(name="Non présenté")
+                profile.groups.add(non_presente_group)
             except ForumGroup.DoesNotExist:
                 return HttpResponse(status=500)
             login(request, user)
@@ -546,9 +546,9 @@ def new_topic(request):
                 if user_groups.count() == 0:
                     return error_page(request, "Informations", "Vous devez vous présenter avant de créer un sujet.")
                 else:
-                    # Check if the user is "Outsider" as top group
+                    # Check if the user is "Non présenté" as top group
                     top_group = user_profile.get_top_group
-                    if top_group.name == "Outsider":
+                    if top_group.name == "Non présenté":
                         return error_page(request, "Informations", "Vous devez vous présenter avant de créer un sujet.")
             except Profile.DoesNotExist:
                 return error_page(request, "Informations", "Vous devez vous présenter avant de créer un sujet.")
@@ -664,9 +664,9 @@ def topic_details(request, topicid, topicslug):
             if user_groups.count() == 0:
                 render_quick_reply = False
             else:
-                # Check if the user is "Outsider" as top group
+                # Check if the user is "Non présenté" as top group
                 top_group = user_profile.get_top_group
-                if top_group.name == "Outsider":
+                if top_group.name == "Non présenté":
                     render_quick_reply = False
         except Profile.DoesNotExist:
             render_quick_reply = False
@@ -710,9 +710,9 @@ def new_post(request):
             if user_groups.count() == 0:
                 return error_page(request, "Informations", "Vous devez vous présenter avant de répondre à un sujet.")
             else:
-                # Check if the user is "Outsider" as top group
+                # Check if the user is "Non présenté" as top group
                 top_group = user_profile.get_top_group
-                if top_group.name == "Outsider":
+                if top_group.name == "Non présenté":
                     return error_page(request, "Informations", "Vous devez vous présenter avant de répondre à un sujet.")
         except Profile.DoesNotExist:
             return error_page(request, "Informations", "Vous devez vous présenter avant de répondre à un sujet.")
