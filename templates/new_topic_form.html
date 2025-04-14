@@ -634,16 +634,16 @@ function openNormalPreview() {
             <tr>
                 <td class="row1 classRow2" width="22%"><span class="gen">Icône du sujet</span></td>
                 <td class="row2 classRow2">
+                    <label class="icon-choice-item">
+                        <input type="radio" name="{{ form.icon.name }}" value="" {% if not form.icon.value %}checked{% endif %}>
+                        &nbsp;&nbsp;Aucune
+                    </label>
                     {% for value, label in form.icon.field.choices %}
                         <label class="icon-choice-item">
                             <input type="radio" name="{{ form.icon.name }}" value="{{ value }}" {% if form.icon.value == value %}checked{% endif %}>
                             <img src="{% static value %}" alt="{{ label }}" style="vertical-align: middle;">
                         </label>
                     {% endfor %}
-                    <label class="icon-choice-item">
-                        <input type="radio" name="{{ form.icon.name }}" value="" {% if not form.icon.value %}checked{% endif %}>
-                        &nbsp;&nbsp;Aucune
-                    </label>
                 </td>
             </tr>
             

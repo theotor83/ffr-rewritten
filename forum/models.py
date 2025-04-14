@@ -66,12 +66,16 @@ GENDER_CHOICES = (
 )
 
 ICON_CHOICES = (
+    ("images/topic/icons/fire.gif", "Fire"),
     ("images/topic/icons/star.gif", "Star"),
+    ("images/topic/icons/radioactive.gif", "Radioactive"),
+    ("images/topic/icons/heart.gif", "Heart"),
+    ("images/topic/icons/thinking.gif", "Thinking"),
+    ("images/topic/icons/question.gif", "Question"),
     ("images/topic/icons/warning.gif", "Warning"),
     ("images/topic/icons/info.gif", "Info"),
-    ("images/topic/icons/question.gif", "Question"),
-    ("images/topic/icons/stop.gif", "Stop"),
-    ("images/topic/icons/photo.gif", "Photo"),
+    ("images/topic/icons/redface.gif", "Redface"),
+    ("images/topic/icons/mrgreen.gif", "MrGreen"),
 )
 
 # Create your models here.
