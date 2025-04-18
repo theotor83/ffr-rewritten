@@ -10,4 +10,4 @@ admin.site.register(models.Topic)
 admin.site.register(models.Category)
 admin.site.register(models.Forum)
 admin.site.register(models.TopicReadStatus)
-
+admin.site.register(models.SmileyCategory)

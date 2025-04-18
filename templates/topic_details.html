@@ -920,7 +920,7 @@ function openNormalPreview() {
 </table>
 <table class="forumline" width="100%" cellspacing="1" cellpadding="3" border="0">
     <tbody>
-        <tr align="left">
+        <tr align="right">
             <td class="catHead" colspan="2" height="28"><span class="nav">
 
             {% if previous_topic %}
@@ -997,8 +997,10 @@ function openNormalPreview() {
                             <tr>
                                 <td width="100%"><a href="{% url 'post-redirect' post.id %}"><img
                                             src="{% static 'images/other/save_star.gif' %}" alt="Message" title="Message" border="0"></a>
-                                    <span class="postdetails">Posté le: {{post.created_time|date:"D d M - H:i (Y)"|title }}<span
-                                            class="gen">&nbsp;</span></span></td>
+                                    <span class="postdetails">Posté le: {{post.created_time|date:"D d M Y, H:i"|title }}
+                                        <span class="gen">&nbsp;</span>
+                                            &nbsp; &nbsp;Sujet du message: {{topic.title}}
+                                        </span></td>
                                 <td valign="right" nowrap="nowrap">
                                     <a href="#form_quick_reply" onclick="insertQuote('{{ post.author.username|escapejs }}', `{{ post.text|escapejs }}`)"><img src="{% static 'images/other/citer.png' %}" alt="Répondre en citant" title="Répondre en citant" border="0"></a>
                                     {% if request.user == post.author or request.user.profile.is_user_staff %}

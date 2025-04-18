@@ -37,13 +37,13 @@
 		<tr>
 			<td class="row1" align="center" valign="middle">
 				{% if topic.is_announcement %}
-					<img src="{% static 'images/topic/read/ann.png' %}" width="46" height="46" alt="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses." title="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses.">
+					<img src="{% static 'images/topic/read/ann.png' %}" width="19" height="18" alt="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses." title="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses.">
 				{% elif topic.is_pinned %}
-					<img src="{% static 'images/topic/read/pin.png' %}" width="46" height="46" alt="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses." title="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses.">
+					<img src="{% static 'images/topic/read/pin.png' %}" width="19" height="18" alt="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses." title="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses.">
 				{% elif topic.is_locked %}
-					<img src="{% static 'images/topic/read/locked.png' %}" width="46" height="46" alt="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses." title="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses.">
+					<img src="{% static 'images/topic/read/locked.png' %}" width="19" height="18" alt="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses." title="Ce sujet est verrouillé; vous ne pouvez pas éditer les messages ou faire de réponses.">
 				{% else %}
-					<img src="{% static 'images/topic/read/normal.png' %}" width="46" height="46" alt="Pas de nouveaux messages" title="Pas de nouveaux messages">
+					<img src="{% static 'images/topic/read/normal.png' %}" width="19" height="18" alt="Pas de nouveaux messages" title="Pas de nouveaux messages">
 				{% endif %}
 			</td>
 			
@@ -71,7 +71,7 @@
 			<td class="row2" align="center" valign="middle" nowrap="nowrap"><span class="postdetails">
 			{% with latest_message=topic.get_latest_message %}
 				{% if latest_message %}
-					{{latest_message.created_time|date:"D d M - H:i (Y)"|title}}<br /><a href="{% url 'profile-details' latest_message.author.id %}" style="color: {{ latest_message.author.profile.get_group_color }};font-weight:bold;" class="username-coloured user-id-{{latest_message.author.id}}">{{latest_message.author.username}}</a> <a href="{% url 'post-redirect' latest_message.id %}"><img src="{% static 'images/other/enemy_encounter.png' %}" alt="Voir le dernier message" title="Voir le dernier message" border="0" /></a></span></td>
+					{{latest_message.created_time|date:"D d M Y, H:i"|title}}<br /><a href="{% url 'profile-details' latest_message.author.id %}" style="color: {{ latest_message.author.profile.get_group_color }};font-weight:bold;" class="username-coloured user-id-{{latest_message.author.id}}">{{latest_message.author.username}}</a> <a href="{% url 'post-redirect' latest_message.id %}"><img src="{% static 'images/other/enemy_encounter.png' %}" alt="Voir le dernier message" title="Voir le dernier message" border="0" /></a></span></td>
 				{% else %}
 					<!-- NO LATEST REPLY --> </span></td>
 				{% endif %}
