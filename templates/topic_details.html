@@ -243,6 +243,62 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 800); // Increased timeout for better reliability
     }
+
+    // --- Smiley Selector Logic for Quick Reply ---
+    const smileyCategorySelectQuickReply = document.getElementById('smiley-category-select-quickreply');
+    const smileyDisplayAreasQuickReply = document.querySelectorAll('.smiley-display-area-quickreply');
+    const quickReplyTextarea = document.getElementById('id_text'); // Target quick reply textarea
+    const smileyContainer = document.querySelector('.smiley-selector-container-quickreply'); // Get container
+
+    // --- Dropdown Logic (Only if dropdown exists) ---
+    if (smileyCategorySelectQuickReply && quickReplyTextarea) {
+        // Dropdown change listener
+        smileyCategorySelectQuickReply.addEventListener('change', function() {
+            const selectedCategoryId = this.value;
+            const targetSmileyAreaId = 'smiley-area-quickreply-' + selectedCategoryId;
+
+            smileyDisplayAreasQuickReply.forEach(function(area) {
+                area.style.display = 'none';
+                if (area.id === targetSmileyAreaId) {
+                    area.style.display = 'block'; // Or 'flex' if using flexbox
+                }
+            });
+        });
+    }
+
+    // --- Smiley Click Logic (Always apply if container and textarea exist) ---
+    if (smileyContainer && quickReplyTextarea) {
+         smileyContainer.addEventListener('click', function(event) {
+            // Check if the clicked element is one of the smiley images
+            if (event.target.tagName === 'IMG' && event.target.hasAttribute('data-bbcode')) {
+                const bbcode = event.target.getAttribute('data-bbcode');
+                // Get the SCEditor instance associated with the quick reply textarea
+                const editorInstance = sceditor.instance(quickReplyTextarea);
+
+                if (editorInstance && bbcode) {
+                    // If SCEditor instance exists, use its insert method
+                    editorInstance.insert(bbcode);
+                    editorInstance.focus(); // Keep focus on the editor
+                } else if (quickReplyTextarea && bbcode) {
+                    // Fallback: If no SCEditor instance, insert directly into the textarea
+                    // (This part might not be needed if SCEditor always initializes correctly)
+                    const start = quickReplyTextarea.selectionStart;
+                    const end = quickReplyTextarea.selectionEnd;
+                    const text = quickReplyTextarea.value;
+                    const before = text.substring(0, start);
+                    const after = text.substring(end, text.length);
+                    const insertion = bbcode
+
+                    quickReplyTextarea.value = before + insertion + after;
+
+                    // Move cursor to after the inserted text
+                    quickReplyTextarea.selectionStart = quickReplyTextarea.selectionEnd = start + insertion.length;
+                    quickReplyTextarea.focus(); // Keep focus on the textarea
+                }
+            }
+        });
+    }
+
 });
 
 function openNormalPreview() {
@@ -573,6 +629,10 @@ function openNormalPreview() {
         filter: invert(1); /* Inverts the icon color (black becomes white) */
         cursor: pointer;
         padding: 2px;
+    }
+
+    .smiley-display-area-quickreply img[data-bbcode] {
+    cursor: pointer;
     }
 
 </style>
@@ -1074,7 +1134,36 @@ function openNormalPreview() {
             <form action="" method="post" id="form_quick_reply">
                 {% csrf_token %}
                 <tr>
-                    <td width="150" align="left" valign="top" class="row1">
+                    <td class="row1 classRow1QuickReplySmiley" style="vertical-align: top;"> {# Use specific class and styles #}
+
+                         {# Container for the smiley selector and display area #}
+                         Smilies: {% if smiley_categories|length > 1 %}<select id="smiley-category-select-quickreply" name="smiley_category_quickreply"> {# Unique name/id #}
+                                {% for category in smiley_categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                            {% endif %}
+
+                         <div class="smiley-selector-container-quickreply">
+                            {# Area where smilies for the selected category will be displayed #}
+                            {% for category in smiley_categories %}
+                                <div class="smiley-display-area-quickreply" id="smiley-area-quickreply-{{ category.id }}" {% if not forloop.first %}style="display: none;"{% endif %}>
+                                    {% for smiley in category.smileys.all %}
+                                        {% if smiley.display_on_editor %}
+                                            <img src="{{ smiley.image.url }}"
+                                                alt="{{ smiley.code }}"
+                                                title="{{ smiley.code }}"
+                                                width="{{ smiley.image_width|default:'auto' }}"
+                                                height="{{ smiley.image_height|default:'auto' }}"
+                                                data-bbcode="{{ smiley.code }}"
+                                                loading="lazy">
+                                        {% endif %}
+                                    {% empty %} {# Use empty tag #}
+                                        <span class="genmed" style="display: block; margin-top: 5px;">(Aucun smiley)</span>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                         </div>
                     </td>
                     <td class="row1" width="100%" height="28" valign="top">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
