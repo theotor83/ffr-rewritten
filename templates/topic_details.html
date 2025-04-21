@@ -364,26 +364,16 @@ function openNormalPreview() {
         background-color: #000000;
         color: #FFFFFF;
         height: 124px !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        font-size: 16px !important;
-        font-family: 'determination', monospace !important;
-    }
-    
-    /* I don't know why I have two of the same thing but whatever I'm keeping it */
-    .sceditor-container textarea {
-        display: block !important;
-        position: static !important;
-        width: 100% !important;
-        height: 124px !important;
-        color: #FFFFFF !important;
-        resize: none !important;
         padding: 2px !important;
         margin: 0 !important;
-        border: none !important;
-        box-sizing: border-box !important;
         font-size: 16px !important;
-        font-family: 'determination', monospace !important;
+        font-family: inherit !important;
+        border: none !important;
+        box-sizing: border-box !important; 
+        width: 100% !important; 
+        resize: none !important; 
+        display: block !important;
+        position: static !important;
     }
     
     /* Reduce toolbar padding */
@@ -579,7 +569,7 @@ function openNormalPreview() {
 </style>
 
 
- <style>  
+<style>  
     /* This is for the quick reply, taken from new_post_form.html */
     
     /* td.row2 {
@@ -1003,53 +993,36 @@ function openNormalPreview() {
         </tr>
         {% for post in posts %}
             <tr>
-                <td width="150" align="left" valign="top" class="row1">
-                    <div class="hovername">
-                        <a name="p{{post.id}}"></a>
-                        <span style="color: {{ post.author.profile.get_group_color }};font-weight:bold;" class="username-coloured user-id-{{post.author.id}}">{{post.author.username}}</span>
+                <td width="150" align="left" valign="top" class="row1" style="font-size: 11px;">
+                    <a name="p{{post.id}}"></a>
+                    <b><span style="color: {{ post.author.profile.get_group_color }};font-weight:bold;font-size: 11px;" class="username-coloured user-id-{{post.author.id}}">{{post.author.username}}</span></b>
+                    <br>
+                    <span class="postdetails">
+                        <span class="gensmall">{{post.author.profile.get_top_group.name}}
                         <br>
-                        <span class="postdetails">
-                            <span>{{post.author.profile.get_top_group.name}}
-                            <br>
-                            {% if post.author.profile.get_top_group.icon %}
-                                <img src="{{post.author.profile.get_top_group.icon.url}}" alt="{{post.author.profile.get_top_group.name}}" border="0">
-                            {% endif %}
-                            <br>
-                            </span>
-                            <style>
-                                span[title='Desc'] {
-                                    display: none;
-                                }
-
-                                div.hovername:hover span[title='Desc'] {
-                                    display: block !important;
-                                }
-
-                                span[title='Desc'] {
-                                    border-bottom: 1px solid #666;
-                                    padding-bottom: 3px;
-                                    padding-top: 3px;
-                                }
-                            </style>
-                            {% if post.author.profile.profile_picture %}
-                                <img src="{{ post.author.profile.profile_picture.url }}" alt="PROFILE_PICTURE" border="0" class="user-id-{{post.author.id}} photo">
-                            {% endif %}
-                            <br>
-                            <span class="gensmall" style="font-weight:bold;color:#F82D2E">Hors ligne</span>
-                            {% if post.author.profile.desc %}
-                                <span id="infohover" style="padding-top:3px;line-height:1.2;"> <span title="Desc">{{post.author.profile.desc}}</span>
-                            {% endif %}
-                                <div>Type: <img src="{% static 'images/profile/type/' %}{{ post.author.profile.type }}.png" alt="{{ post.author.profile.type }}" title=""></div> 
-                                {% if post.author.profile.zodiac_sign %}
-                                    <span title="Signe du Zodiaque"><img src="{% static 'images/profile/zodiac/' %}{{ post.author.profile.zodiac_sign }}.png" alt="{{post.author.profile.zodiac_sign}}" title="{{post.author.profile.zodiac_sign}}">
-                                    </span>
-                                {% endif %} 
-                                <span
-                                    title="Sexe"><img src="{% static 'images/profile/gender/' %}{{ post.author.profile.gender }}.png" alt="{{ post.author.profile.gender }}" title="{{ post.author.profile.gender }}"></span>
-                            </span>
-                            <br>Inscrit le: {{post.author.date_joined|date:"d M Y"}}<br>Messages: {{post.author.profile.messages_count}}
                         </span>
-                    </div>
+                        {% if post.author.profile.profile_picture %}
+                            <img src="{{ post.author.profile.profile_picture.url }}" alt="PROFILE_PICTURE" border="0" class="user-id-{{post.author.id}} photo">
+                        {% endif %}
+                        <br>
+                        <span class="gensmall" style="font-weight:bold;color:#666666">Hors ligne</span><br><br>
+                        Inscrit le: {{post.author.date_joined|date:"d M Y"}}<br>Messages: {{post.author.profile.messages_count}}
+                        {% if post.author.profile.localisation %}
+                            <div>Localisation: {{post.author.profile.localisation}}</div>
+                        {% endif %}
+                        <span title="Sexe"><img src="{% static 'images/profile/gender/' %}{{ post.author.profile.gender }}.png" alt="{{ post.author.profile.gender }}" title="{{ post.author.profile.gender }}"></span>
+                        {% if post.author.profile.zodiac_sign %}
+                            <span title="Signe du Zodiaque"><img src="{% static 'images/profile/zodiac/' %}{{ post.author.profile.zodiac_sign }}.png" alt="{{post.author.profile.zodiac_sign}}" title="{{post.author.profile.zodiac_sign}}">
+                            </span>
+                        {% endif %} 
+                        {% if post.author.profile.chinese_sign %}
+                            <span title="Signe Chinois"><img src="{% static 'images/profile/chinese/' %}{{post.author.profile.chinese_sign}}.gif" alt="{{post.author.profile.chinese_sign}}" title="{{post.author.profile.chinese_sign}}">
+                            </span>
+                        {% endif %}
+                        </span>
+                        <br>
+                    </span>
+                    </span>
                 </td>
                 <td class="row1" width="100%" height="28" valign="top">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -1108,10 +1081,10 @@ function openNormalPreview() {
                                         <a href="callto:{{post.author.profile.skype}}" title="{{post.author.skype}}"><img src="{% static '\images\profile\other\icon_skype.gif' %}" alt="Skype" title="Skype" border="0"></a>
                                     {% endif %}
                                     <script language="JavaScript" type="text/javascript">
-    if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5s.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
-    document.write(' ');
-    else
-    document.write('</td><td> </td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+                                        if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5s.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+                                        document.write(' ');
+                                        else
+                                        document.write('</td><td> </td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
                                     </script>
                                 </td>
                                 <td>&nbsp;</td>
@@ -1134,7 +1107,7 @@ function openNormalPreview() {
             <form action="" method="post" id="form_quick_reply">
                 {% csrf_token %}
                 <tr>
-                    <td class="row1 classRow1QuickReplySmiley" style="vertical-align: top;"> {# Use specific class and styles #}
+                    <td class="row1 classRow1QuickReplySmiley gen" style="vertical-align: top;"> {# Use specific class and styles #}
 
                          {# Container for the smiley selector and display area #}
                          Smilies: {% if smiley_categories|length > 1 %}<select id="smiley-category-select-quickreply" name="smiley_category_quickreply"> {# Unique name/id #}
@@ -1169,7 +1142,7 @@ function openNormalPreview() {
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tbody>
                                 <tr>
-                                    <td class="row2 classRow2">Réponse rapide:<br />
+                                    <td class="row2 classRow2 nav">Réponse rapide:<br />
                                         {{ form.text }}
                                         <script>
                                         function insertQuote(author, content) {
@@ -1196,7 +1169,7 @@ function openNormalPreview() {
                         <table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
                             <tbody>
                                 <tr>
-                                    <td class="cat"> <!-- TODO: [0] Make the buttons closer to the bottom (super minor change) -->
+                                    <td> <!-- TODO: [0] Make the buttons closer to the bottom (super minor change) -->
                                         <input class="liteoption" type="button" name="prev_ort" value="Prévisualisation et Orthographe" onclick="openNormalPreview()">
                                         &nbsp;<input class="liteoption" type="button" name="prev" value="Prévisualisation normale" onclick="openNormalPreview()">
                                         &nbsp;<input class="mainoption" type="submit" id="submit" name="reply" value="Envoyer">
