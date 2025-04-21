@@ -61,6 +61,22 @@ ZODIAC_CHOICES = (
     ("", "Aucun"),
 )
 
+CHINESE_CHOICES = (
+    ("rat", "鼠 Rat"),
+    ("buffle", "牛 Buffle"),
+    ("tigre", "虎 Tigre"),
+    ("lapin", "兔 Lapin"),
+    ("dragon", "龙 Dragon"),
+    ("serpent", "蛇 Serpent"),
+    ("cheval", "马 Cheval"),
+    ("chevre", "羊 Chèvre"),
+    ("singe", "猴 Singe"),
+    ("coq", "鸡 Coq"),
+    ("chien", "狗 Chien"),
+    ("cochon", "猪 Cochon"),
+    ("", "Aucun"),
+)
+
 GENDER_CHOICES = (
     ("male", "Masculin"),
     ("female", "Féminin")
@@ -109,16 +125,25 @@ class Profile(models.Model):
     profile_picture = models.ImageField(null=True, blank=True, upload_to='images/profile_picture/')
     groups = models.ManyToManyField(ForumGroup, related_name='users')
     messages_count = models.IntegerField(default=0)
-    desc = models.CharField(null=True, blank=True, max_length=20)
+
+    #desc = models.CharField(null=True, blank=True, max_length=20)
     localisation = models.CharField(null=True, blank=True, max_length=255)
-    loisirs = models.CharField(null=True, blank=True, max_length=255)
+    #loisirs = models.CharField(null=True, blank=True, max_length=255)
     birthdate = models.DateTimeField()
-    type = models.CharField(max_length = 20, choices = TYPE_CHOICES, default = "neutral") 
-    favorite_games = models.CharField(null=True, blank=True, max_length=255)
+    #type = models.CharField(max_length = 20, choices = TYPE_CHOICES, default = "neutral") 
+    #favorite_games = models.CharField(null=True, blank=True, max_length=255)
     zodiac_sign = models.CharField(max_length = 20, choices = ZODIAC_CHOICES, null=True, blank=True)
+    chinese_sign = models.CharField(max_length = 30, choices = CHINESE_CHOICES, null=True, blank=True)
     gender = models.CharField(max_length = 20, choices = GENDER_CHOICES)
+
     website = models.CharField(null=True, blank=True, max_length=255)
+    icq = models.CharField(null=True, blank=True, max_length=255)
+    aim = models.CharField(null=True, blank=True, max_length=255)
+    yim = models.CharField(null=True, blank=True, max_length=255)
+    msnm = models.CharField(null=True, blank=True, max_length=255)
+    jabber = models.CharField(null=True, blank=True, max_length=255)
     skype = models.CharField(null=True, blank=True, max_length=255)
+
     signature = models.TextField(null=True, blank=True, max_length=65535)
     email_is_public = models.BooleanField(default=False)    
     last_login = models.DateTimeField(auto_now=True)
@@ -169,9 +194,6 @@ class Profile(models.Model):
         else:
             # Regular save for profile edits
             super().save(*args, **kwargs)
-        
-        if self.type == '':
-            self.type = "neutral"
 
         
     

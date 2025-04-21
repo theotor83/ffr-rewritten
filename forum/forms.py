@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile, TYPE_CHOICES, ZODIAC_CHOICES, GENDER_CHOICES, Topic, Post, Category, ICON_CHOICES
+from .models import Profile, TYPE_CHOICES, ZODIAC_CHOICES, GENDER_CHOICES, Topic, Post, Category, ICON_CHOICES, CHINESE_CHOICES
 from PIL import Image
 from io import BytesIO
 import os
@@ -37,18 +37,20 @@ class ProfileForm(forms.ModelForm):
         widget=forms.Select(attrs={"data-placeholder": "true"}),
         required=False,
     )
-    type = forms.ChoiceField(
-        choices=[("", "Sélectionner")] + list(TYPE_CHOICES),
+    chinese_sign = forms.ChoiceField(
+        choices=[("", "Sélectionner")] + list(CHINESE_CHOICES),
         widget=forms.Select(attrs={"data-placeholder": "true"}),
         required=False,
     )
 
+
     class Meta:
         model = Profile
         fields = [
-            'birthdate', 'type', 'zodiac_sign', 'gender',
-            'desc', 'localisation', 'loisirs', 
-            'favorite_games', 'website', 'skype', 'profile_picture', 'signature'
+            'birthdate', 'zodiac_sign', 'chinese_sign', 'gender',
+            'localisation', 
+            'website', 'icq', 'aim', 'yim', 'msnm', 'jabber', 'skype', 
+            'profile_picture', 'signature'
         ]
 
         widgets = { #TODO: [2] change this to a custom, worse dateinput
@@ -119,6 +121,14 @@ class ProfileForm(forms.ModelForm):
     def clean_zodiac_sign(self): 
         '''Makes sure choosing "Aucun" in the zodiac sign's dropdown makes zodiac_sign NULL'''
         value = self.cleaned_data.get("zodiac_sign")
+        if value == "":
+            return None
+        else:
+            return value
+        
+    def clean_chinese_sign(self): 
+        '''Makes sure choosing "Aucun" in the chinese sign's dropdown makes chinese_sign NULL'''
+        value = self.cleaned_data.get("chinese_sign")
         if value == "":
             return None
         else:

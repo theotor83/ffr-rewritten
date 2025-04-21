@@ -82,12 +82,12 @@
     {% csrf_token %}
     <table class="forumline" width="100%" border="0" cellspacing="1" cellpadding="0">
         <tbody>
-            <tr><th class="thHead" colspan="2" valign="middle" height="25">Enregistrement :: <a href="{% url 'profile-details' request.user.id %}" style="color: white;">Voir mon profil</a></th></tr>
+            <tr><th class="thHead" colspan="2" valign="middle" height="25">Enregistrement</th></tr>
             <tr><td class="row2 classRow2" colspan="2"><span class="gensmall">Les champs marqués d'un * sont obligatoires.</span></td></tr>
             
             <tr>
                 <td class="row1 classRow2" width="38%"><span class="gen">Nom d'utilisateur&nbsp;:&nbsp;*</span></td>
-                <td class="row2 classRow2">{{ request.user.username }}</td>
+                <td class="row2 classRow2 gen">{{ request.user.username }}</td>
             </tr>
             
             <tr>
@@ -117,10 +117,10 @@
                 <td class="row1 classRow2"><span class="gen">Signe astrologique&nbsp;:</span></td>
                 <td class="row2 classRow2">{{ profile_form.zodiac_sign }}</td>
             </tr>
-            
+
             <tr>
-                <td class="row1 classRow2"><span class="gen">Description&nbsp;:</span></td>
-                <td class="row2 classRow2">{{ profile_form.desc }}</td>
+                <td class="row1 classRow2"><span class="gen">Signe chinois&nbsp;:</span></td>
+                <td class="row2 classRow2">{{ profile_form.chinese_sign }}</td>
             </tr>
 
             <tr>
@@ -129,23 +129,33 @@
             </tr>
 
             <tr>
-                <td class="row1 classRow2"><span class="gen">Loisirs&nbsp;:</span></td>
-                <td class="row2 classRow2">{{ profile_form.loisirs }}</td>
-            </tr>
-
-            <tr>
-                <td class="row1 classRow2"><span class="gen">Jeux préférés&nbsp;:</span></td>
-                <td class="row2 classRow2">{{ profile_form.favorite_games }}</td>
-            </tr>
-
-            <tr>
-                <td class="row1 classRow2"><span class="gen">Type&nbsp;:</span></td>
-                <td class="row2 classRow2">{{ profile_form.type }}</td>
-            </tr>
-
-            <tr>
                 <td class="row1 classRow2"><span class="gen">Site web&nbsp;:</span></td>
                 <td class="row2 classRow2">{{ profile_form.website }}</td>
+            </tr>
+
+            <tr>
+                <td class="row1 classRow2"><span class="gen">ICQ&nbsp;:</span></td>
+                <td class="row2 classRow2">{{ profile_form.icq }}</td>
+            </tr>
+
+            <tr>
+                <td class="row1 classRow2"><span class="gen">AIM&nbsp;:</span></td>
+                <td class="row2 classRow2">{{ profile_form.aim }}</td>
+            </tr>
+
+            <tr>
+                <td class="row1 classRow2"><span class="gen">YIM&nbsp;:</span></td>
+                <td class="row2 classRow2">{{ profile_form.yim }}</td>
+            </tr>
+
+            <tr>
+                <td class="row1 classRow2"><span class="gen">MSNM&nbsp;:</span></td>
+                <td class="row2 classRow2">{{ profile_form.msnm }}</td>
+            </tr>
+
+            <tr>
+                <td class="row1 classRow2"><span class="gen">Jabber&nbsp;:</span></td>
+                <td class="row2 classRow2">{{ profile_form.jabber }}</td>
             </tr>
 
             <tr>
@@ -167,7 +177,7 @@
             </tr>
 
             <tr><td class="catBottom" colspan="2" align="center" height="28">
-                <input class="mainoption" type="submit" id="submit" name="submit" value="Enregistrer">
+                <input class="mainoption" type="submit" id="submit" name="submit" value="Envoyer">
                 &nbsp;<input class="liteoption" type="reset" name="reset" value="Réinitialiser"></td>
             </tr>
         </tbody>
