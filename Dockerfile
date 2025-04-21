@@ -17,6 +17,7 @@ RUN apt-get update \
         postgresql-client \
         build-essential \
         netcat-traditional \
+        curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

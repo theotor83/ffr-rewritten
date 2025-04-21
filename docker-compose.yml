@@ -26,6 +26,15 @@ services:
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       - DEVELOPMENT_MODE=False
+    ports:
+      - "8000:8000"
+    healthcheck:
+      # Test if Waitress is responding to requests
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 10s  # Check every 10 seconds
+      timeout: 5s    # Wait 5 seconds for response
+      retries: 5     # Try 5 times before marking as unhealthy
+      start_period: 30s # Allow 30 seconds for the container to start before first check
 
   nginx:
     build: ./docker/nginx
@@ -37,7 +46,10 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - web
+      web:
+        condition: service_healthy # Wait for the web service healthcheck to pass
+    env_file:
+      - .env
 
 volumes:
   postgres_data:
