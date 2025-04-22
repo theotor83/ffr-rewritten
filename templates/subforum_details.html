@@ -9,6 +9,11 @@
 <form method="post">
 {% csrf_token %}
 <table width="100%" cellspacing="2" cellpadding="2" border="0" align="center">
+<tbody>
+<tr>
+<td align="left" valign="bottom" colspan="2"><a class="maintitle" href="{% url 'subforum-details' subforum.id subforum.slug %}">{{subforum.title}}</a><br><span class="gensmall"><b>Modérateurs: <a href="groups/g8">Administrateur</a>, <a href="groups/g7">Modérateur</a><br>Utilisateurs parcourant actuellement ce forum : Aucun</b></span></td>
+<td align="right" valign="bottom" nowrap="nowrap"><span class="gensmall"><b></b></span></td>
+</tr>
 <tr>
 {% if subforum.is_locked %}
     <td align="left" valign="middle" width="50"><a href="{% url 'new-topic' %}?f={{ subforum.id }}">
@@ -27,6 +32,7 @@ class="nav">{{subforum.category.name}}</a>
 </span></td>
 <td align="right" valign="bottom" class="nav" nowrap="nowrap"><span class="gensmall"><a href="{% url 'mark-as-read' %}?f={{subforum.id}}">Marquez tous les sujets comme lus</a></span></td>
 </tr>
+</tbody>
 </table>
 <table border="0" cellpadding="4" cellspacing="1" width="100%" class="forumline">
 <tr>
@@ -344,33 +350,31 @@ class="nav">{{subforum.category.name}}</a>
 </tr>
 </table>
 <table width="100%" cellspacing="2" border="0" align="center" cellpadding="2">
-<tr>
-{% if subforum.is_locked %}
-    <td align="left" valign="middle" width="50"><a href="{% url 'new-topic' %}?f={{ subforum.id }}">
-    <img src="{% static 'images/buttons/verrouille.png' %}" border="0" alt="Ce forum est verrouillé; vous ne pouvez pas poster, ni répondre, ni éditer les sujets." /></a></td>
-{% else %}
-    <td align="left" valign="middle" width="50"><a href="{% url 'new-topic' %}?f={{ subforum.id }}">
-    <img src="{% static 'images/buttons/new_topic.png' %}" border="0" alt="Poster un nouveau sujet" /></a></td>
-{% endif %}
-<td align="left" valign="middle" width="100%"><span class="nav">   <a href="index.html" class="nav">Le forum Five Nights at Freddy's Index du Forum</a>
+<tbody>
+    <tr>
+        {% if subforum.is_locked %}
+            <td align="left" valign="middle" width="50"><a href="{% url 'new-topic' %}?f={{ subforum.id }}">
+            <img src="{% static 'images/buttons/verrouille.png' %}" border="0" alt="Ce forum est verrouillé; vous ne pouvez pas poster, ni répondre, ni éditer les sujets." /></a></td>
+        {% else %}
+            <td align="left" valign="middle" width="50"><a href="{% url 'new-topic' %}?f={{ subforum.id }}">
+            <img src="{% static 'images/buttons/new_topic.png' %}" border="0" alt="Poster un nouveau sujet" /></a></td>
+        {% endif %}
+        <td align="left" valign="middle" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="{% url 'index' %}" class="nav">Le forum Five Nights at Freddy's Index du Forum</a>
 
- -> <a href="{{subforum.category.get_absolute_url}}"
- class="nav">{{subforum.category.name}}</a>
-{% for node  in tree %}
-        -> <a class="nav" href="{{node.get_absolute_url}}">{{node.title}}</a>
-{% endfor %}
+        -> <a href="{{subforum.category.get_absolute_url}}"
+        class="nav">{{subforum.category.name}}</a>
+        {% for node  in tree %}
+                -> <a class="nav" href="{{node.get_absolute_url}}">{{node.title}}</a>
+        {% endfor %}
 
-</span></td>
-<td align="right" valign="middle" nowrap="nowrap"><span class="gensmall">Toutes les heures sont au format GMT + 2 Heures</span><br /><span class="nav"></span>
-</td>
-</tr>
-<tr>
-<td align="center" width="80" ><span class="nav">Page <b>1</b> sur <b>1</b></span></td>
-<td align="left" valign="middle" width="100%"><span class="gensmall"><b>   Modérateurs: <a href="profile0839.html?mode=viewprofile&amp;u=817" style="color:#6775AC;font-weight:bold" class="username-coloured user-id-817">UTFbot</a>, <a href="groups/g10">Determination</a>, <a href="groups/g9">Royal Guard</a></br>   Utilisateurs parcourant actuellement ce forum : Aucun</b></span></td>
-</tr>
-<tr>
-<td valign="middle" width="20%" nowrap="nowrap"><span class="gensmall"><b></b></span></td>
-</tr>
+        </span></td>
+        <td align="right" valign="middle" nowrap="nowrap"><span class="gensmall">Toutes les heures sont au format GMT + 2 Heures</span><br /><span class="nav"></span>
+        </td>
+    </tr>
+    <tr>
+        <td align="left" colspan="3"><span class="nav">Page <b>1</b> sur <b>1</b></span></td>
+    </tr>
+</tbody>
 </table>
 </form>
 <table width="100%" cellspacing="2" border="0" align="center">
