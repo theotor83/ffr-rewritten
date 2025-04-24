@@ -930,7 +930,33 @@ function openNormalPreview() {
         <tr>
             <td align="left" valign="bottom" colspan="2"><a class="maintitle"
                     href="{{topic.get_absolute_url}}" google_ad_section_start="" --="">{{topic.title}}</a><br>
-                <span class="gensmall"><b></b><br>
+                <span class="gensmall"><b>{% if pagination|length > 1 %}
+                        <span class="nav">
+                        <a href="javascript:gotopage('{% url 'topic-details' topic.id topic.slug %}', 'Aller à la page:')">
+                            Aller à la page:</a>
+                        {% if current_page > 1%}
+                            <a href="{% querystring page=current_page|add:"-1" %}">&lt;</a>
+                        {% endif %}  
+
+                        {% for page in pagination %}
+                            {% if page == "..." %}
+                                … 
+                            {% else %}
+                                {% if page != current_page %}
+                                    <a href="{% querystring page=page %}">{{page}}</a>{% if page != max_page %},{% endif %}
+                                {% else %}
+                                    {{page}}{% if page != max_page %},{% endif %}
+                                {% endif %}
+                                
+                            {% endif %}
+
+                        {% endfor %}
+
+                        {% if current_page != max_page %}
+                            <a href="{% querystring page=current_page|add:"1" %}">&gt;</a>&nbsp;
+                        {% endif %}
+                        </span>
+                    {% endif %}</b><br>
                     &nbsp; </span>
             </td>
         </tr>
@@ -1074,12 +1100,29 @@ function openNormalPreview() {
                                             <a href="#"><img src="{% static '\images\other\email.png' %}" alt="Envoyer un e-mail au posteur" title="Envoyer un e-mail au posteur" border="0"></a>
                                         {% endif %}
                                     {% endif %}
+
                                     {% if post.author.profile.website %}
                                         <a href="{{post.author.profile.website}}" target="_userwww"><img src="{% static '\images\other\site.png' %}" alt="Visiter le site web du posteur" title="Visiter le site web du posteur" border="0"></a>
+                                    {% endif %}
+                                    {% if post.author.profile.icq %}
+                                        <a href="icq:{{post.author.profile.icq}}" title="{{post.author.icq}}"><img src="{% static '\images\profile\other\icon_icq.gif' %}" alt="ICQ" title="ICQ" border="0"></a>
+                                    {% endif %}
+                                    {% if post.author.profile.aim %}
+                                        <a href="aim:{{post.author.profile.aim}}" title="{{post.author.aim}}"><img src="{% static '\images\profile\other\icon_aim.gif' %}" alt="AIM" title="AIM" border="0"></a>
+                                    {% endif %}
+                                    {% if post.author.profile.yim %}
+                                        <a href="yim:{{post.author.profile.yim}}" title="{{post.author.yim}}"><img src="{% static '\images\profile\other\icon_yim.gif' %}" alt="Yahoo Messenger" title="Yahoo Messenger" border="0"></a>
+                                    {% endif %}
+                                    {% if post.author.profile.msnm %}
+                                        <a href="msn:{{post.author.profile.msnm}}" title="{{post.author.msnm}}"><img src="{% static '\images\profile\other\icon_msnm.gif' %}" alt="MSN" title="MSN" border="0"></a>
+                                    {% endif %}
+                                    {% if post.author.profile.jabber %}
+                                        <a href="xmpp:{{post.author.profile.jabber}}" title="{{post.author.jabber}}"><img src="{% static '\images\profile\other\icon_jabber.gif' %}" alt="GTalk/Jabber" title="GTalk/Jabber" border="0"></a>
                                     {% endif %}
                                     {% if post.author.profile.skype %}
                                         <a href="callto:{{post.author.profile.skype}}" title="{{post.author.skype}}"><img src="{% static '\images\profile\other\icon_skype.gif' %}" alt="Skype" title="Skype" border="0"></a>
                                     {% endif %}
+
                                     <script language="JavaScript" type="text/javascript">
                                         if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5s.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
                                         document.write(' ');

@@ -56,32 +56,12 @@
                                             <td> &nbsp; </td>
                                             <td width="100%"> &nbsp; </td>
                                         </tr>
-                                        {% if req_user.profile.desc %}
-                                            <tr>
-                                                <td valign="middle" align="right" nowrap="nowrap"><span class="gen"><span
-                                                            style="color:#FFFFFF">Desc</span>:&nbsp;</span></td>
-                                                <td><span class="gen"><span
-                                                            class="user-id-{{req_user.id}} profile-field-Desc">{{req_user.profile.desc}}</span></span>
-                                                </td>
-                                            </tr>
-                                        {% endif %}
-
                                         {% if req_user.profile.localisation %}
                                             <tr>
                                                 <td valign="middle" align="right" nowrap="nowrap"><span class="gen"><span
                                                             style="color:#FFFFFF">Localisation</span>:&nbsp;</span></td>
                                                 <td><span class="gen"><span
                                                             class="user-id-{{req_user.id}} profile-field-Localisation">{{req_user.profile.localisation}}</span></span>
-                                                </td>
-                                            </tr>
-                                        {% endif %}
-
-                                        {% if req_user.profile.loisirs %}
-                                            <tr>
-                                                <td valign="middle" align="right" nowrap="nowrap"><span
-                                                        class="gen">Loisirs:&nbsp;</span></td>
-                                                <td><span class="gen"><span
-                                                            class="user-id-{{req_user.id}} profile-field-Loisirs">{{req_user.profile.loisirs}}</span></span>
                                                 </td>
                                             </tr>
                                         {% endif %}
@@ -98,24 +78,6 @@
                                             </tr>
                                         {% endif %}
 
-                                        {% if req_user.profile.type %}
-                                        <tr>
-                                            <!-- TODO: [0] Change these alts from, for example "neutral" to "Neutre" -->
-                                            <td valign="middle" align="right" nowrap="nowrap"><span class="gen"><span
-                                                        style="color:#FFFFFF">Type</span>:&nbsp;</span></td>
-                                            <td><span class="gen"><span class="user-id-{{req_user.id}} profile-field-Type"><img src="{% static 'images/profile/type/' %}{{ req_user.profile.type }}.png" alt="{{req_user.profile.type}}"></span></span></td>
-                                        </tr>
-                                        {% endif %}
-
-                                        {% if req_user.profile.favorite_games %}
-                                            <tr>
-                                                <td valign="middle" align="right" nowrap="nowrap"><span class="gen"><span
-                                                            style="color:#FFFFFF">Jeux préférés</span>:&nbsp;</span></td>
-                                                <td><span class="gen"><span
-                                                            class="user-id-{{req_user.id}} profile-field-Jeux-20pr-C3-A9f-C3-A9r-C3-A9s">{{req_user.profile.favorite_games}}</span></span></td>
-                                            </tr>
-                                        {% endif %}
-
                                         {% if req_user.profile.zodiac_sign %}
                                             <tr>
                                                 <td valign="middle" align="right" nowrap="nowrap"><span class="gen"><span
@@ -124,6 +86,16 @@
                                                 <!-- TODO: [0] Change these alts from, for example "verseau" to "Verseau (20jan-19fev)" -->
                                                 <td><span class="gen"><span
                                                             class="user-id-{{req_user.id}} profile-field-Signe-20du-20Zodiaque"><img src="{% static 'images/profile/zodiac/' %}{{ req_user.profile.zodiac_sign }}.png" alt="{{req_user.profile.zodiac_sign}}"></span></span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {% if req_user.profile.zodiac_sign %}
+                                            <tr>
+                                                <td valign="middle" align="right" nowrap="nowrap"><span class="gen"><span
+                                                            style="color:#FFFFFF">Signe Chinois</span>:&nbsp;</span>
+                                                </td>
+                                                <td><span class="gen"><span
+                                                            class="user-id-{{req_user.id}} profile-field-Signe-20Chinois"><img src="{% static 'images/profile/chinese/' %}{{ req_user.profile.chinese_sign }}.gif" alt="{{req_user.profile.chinese_sign}}"></span></span></td>
                                             </tr>
                                         {% endif %}
 
@@ -191,15 +163,61 @@
                                         Privé</a></span></td>
                         </tr>
 
+                        {% if req_user.profile.icq %}
+                            <tr>
+                                <td class="row1" align="right" nowrap="nowrap"><span class="gen"><img
+                                            src="{% static '/images/profile/other/icon_icq.gif' %}" alt="ICQ" title="ICQ">:</span></td>
+                                <td class="row1" align="left" nowrap="nowrap"><span class="gen"><span
+                                            class="user-id-{{req_user.id}} profile-field-ICQ"><a href="icq:{{req_user.profile.icq}}"
+                                                title="{{req_user.profile.icq}}">{{req_user.profile.icq}}</a></span></span></td>
+                            </tr>
+                        {% endif %}
+                        {% if req_user.profile.aim %}
+                            <tr>
+                                <td class="row1" align="right" nowrap="nowrap"><span class="gen"><img
+                                            src="{% static '/images/profile/other/icon_aim.gif' %}" alt="AIM" title="AIM">:</span></td>
+                                <td class="row1" align="left" nowrap="nowrap"><span class="gen"><span
+                                            class="user-id-{{req_user.id}} profile-field-AIM"><a href="aim:{{req_user.profile.aim}}"
+                                                title="{{req_user.profile.aim}}">{{req_user.profile.aim}}</a></span></span></td>
+                            </tr>
+                        {% endif %}
+                        {% if req_user.profile.yim %}
+                            <tr>
+                                <td class="row1" align="right" nowrap="nowrap"><span class="gen"><img
+                                            src="{% static '/images/profile/other/icon_yim.gif' %}" alt="Yahoo Messenger" title="Yahoo Messenger">:</span></td>
+                                <td class="row1" align="left" nowrap="nowrap"><span class="gen"><span
+                                            class="user-id-{{req_user.id}} profile-field-YIM"><a href="yim:{{req_user.profile.yim}}"
+                                                title="{{req_user.profile.yim}}">{{req_user.profile.yim}}</a></span></span></td>
+                            </tr>
+                        {% endif %}
+                        {% if req_user.profile.msnm %}
+                            <tr>
+                                <td class="row1" align="right" nowrap="nowrap"><span class="gen"><img
+                                            src="{% static '/images/profile/other/icon_msnm.gif' %}" alt="MSN" title="MSN">:</span></td>
+                                <td class="row1" align="left" nowrap="nowrap"><span class="gen"><span
+                                            class="user-id-{{req_user.id}} profile-field-MSNM"><a href="msn:{{req_user.profile.msnm}}"
+                                                title="{{req_user.profile.msnm}}">{{req_user.profile.msnm}}</a></span></span></td>
+                            </tr>
+                        {% endif %}
+                        {% if req_user.profile.jabber %}
+                            <tr>
+                                <td class="row1" align="right" nowrap="nowrap"><span class="gen"><img
+                                            src="{% static '/images/profile/other/icon_jabber.gif' %}" alt="GTalk/Jabber" title="GTalk/Jabber">:</span></td>
+                                <td class="row1" align="left" nowrap="nowrap"><span class="gen"><span
+                                            class="user-id-{{req_user.id}} profile-field-Jabber"><a href="xmpp:{{req_user.profile.jabber}}"
+                                                title="{{req_user.profile.jabber}}">{{req_user.profile.jabber}}</a></span></span></td>
+                            </tr>
+                        {% endif %}
                         {% if req_user.profile.skype %}
                             <tr>
                                 <td class="row1" align="right" nowrap="nowrap"><span class="gen"><img
                                             src="{% static '/images/profile/other/icon_skype.gif' %}" alt="Skype" title="Skype">:</span></td>
                                 <td class="row1" align="left" nowrap="nowrap"><span class="gen"><span
-                                            class="user-id-29 profile-field-Skype"><a href="callto:{{req_user.profile.skype}}"
+                                            class="user-id-{{req_user.id}} profile-field-Skype"><a href="callto:{{req_user.profile.skype}}"
                                                 title="{{req_user.profile.skype}}">{{req_user.profile.skype}}</a></span></span></td>
                             </tr>
                         {% endif %}
+                        
 
                     </tbody>
                 </table><!-- TEST -->
