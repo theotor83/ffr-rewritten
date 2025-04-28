@@ -8,6 +8,40 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
+
+    {% if request.GET.style == 'sariel' %}
+        {# Load CSS #}
+        <link rel="stylesheet" href="{% static 'css/sariel.css' %}">
+
+        {# Load js #}
+        <script src="{% static 'js/perlin.js' %}"></script>
+        <script src="{% static 'js/sariel.js' %}"></script>
+
+        {# Add style=sariel to all urls #}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const links = document.querySelectorAll('a');
+                links.forEach(link => {
+                    try {
+                        const url = new URL(link.href, window.location.origin);
+                        
+                        if (link.classList.contains('sariel-toggle')) {
+                            // Remove style parameter for toggle links
+                            url.searchParams.delete('style');
+                        } else {
+                            // Add style parameter for other links
+                            url.searchParams.set('style', 'sariel');
+                        }
+                        
+                        link.href = url.toString();
+                    } catch(e) {
+                        console.error('Error processing URL:', e);
+                    }
+                });
+            });
+        </script>
+    {% endif %}
+
     <link rel="shortcut icon" href="{% static 'images/utf_icon.png' %}">
 
     <!-- Mirrored from freddy-fazbear.xooit.org/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 11 May 2024 16:27:23 GMT -->
@@ -22,9 +56,9 @@
     <meta name="google-site-verification" content="OEwpZA40AkMHcBb7DSSJltmq3i2tW1waWlv1Y8B_-NA">
     <meta name="google-site-verification" content="a1KQUhS3gsSTA1cLNqTxLetCAr3mSiJkuKpF1jJdERM">
     <meta name="language" content="fr">
-    <link rel="search" title="Le forum Five Nights at Freddy's" type="application/opensearchdescription+xml"
-        href="opensearchdescription.php">
-    <script async="" src="../www.googletagmanager.com/gtag/jsf4cf?id=G-965DXEW8TE"></script>
+    {% comment %} <link rel="search" title="Le forum Five Nights at Freddy's" type="application/opensearchdescription+xml"
+        href="opensearchdescription.php"> {% endcomment %}
+    {% comment %} <script async="" src="../www.googletagmanager.com/gtag/jsf4cf?id=G-965DXEW8TE"></script> {% endcomment %}
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -126,11 +160,11 @@
                                                                 src="{% static 'images/head/groupes.png' %}" border="0"
                                                                 alt="Groupes" hspace="3">Groupes</a>&nbsp;
 
-                                                        &nbsp;<a href="{% url 'register-regulation' %}"
+                                                        {% if not request.user.is_authenticated %}&nbsp;<a href="{% url 'register-regulation' %}"
                                                             class="mainmenu"><img
                                                                 src="{% static 'images/head/reg.png' %}" border="0"
                                                                 alt="S’enregistrer"
-                                                                hspace="3">S’enregistrer</a></span>&nbsp;
+                                                                hspace="3">S’enregistrer</a></span>&nbsp;{% endif %}
 
                                                 </td>
                                             </tr>

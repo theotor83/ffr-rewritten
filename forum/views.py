@@ -265,7 +265,7 @@ def index(request):
     groups = ForumGroup.objects.all()
 
     try:
-        presentations = Topic.objects.filter(is_sub_forum=True, title="Présentations").first()
+        presentations = Topic.objects.filter(is_sub_forum=True, title="Présente-toi ici !").first()
     except Topic.DoesNotExist:
         presentations = None
     try:
@@ -542,7 +542,7 @@ def new_topic(request):
     if request.user.is_authenticated == False:
         return redirect("login-view")
     else:
-        if subforum.title != "Présentations":
+        if subforum.title != "Présente-toi ici !":
             try:
                 user_profile = Profile.objects.get(user=request.user)
                 user_groups = user_profile.groups.all()
