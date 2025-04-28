@@ -653,12 +653,14 @@ function openNormalPreview() {
                     <div class="smiley-selector-container"> {# Centering is inherited from TD now #}
 
                         <label for="smiley-category-select" class="genmed" style="margin-right: 5px;">Smilies:</label>
-                        <select id="smiley-category-select" name="smiley_category" style="background-color: #000; color: #fff; border: 1px solid #fff; padding: 2px; margin-bottom: 10px; max-width: 150px;"> {# Added max-width #}
-                            {# Populate dropdown from context variable #}
-                            {% for category in smiley_categories %}
-                                <option value="{{ category.id }}">{{ category.name }}</option>
-                            {% endfor %}
-                        </select>
+                        {% if smiley_categories|length > 1 %}
+                            <select id="smiley-category-select" name="smiley_category" style="background-color: #000; color: #fff; border: 1px solid #fff; padding: 2px; margin-bottom: 10px; max-width: 150px;"> {# Added max-width #}
+                                {# Populate dropdown from context variable #}
+                                {% for category in smiley_categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        {% endif %}
 
                         {# Area where smilies for the selected category will be displayed #}
                         {# JavaScript will be needed later to show/hide based on dropdown selection. #}
