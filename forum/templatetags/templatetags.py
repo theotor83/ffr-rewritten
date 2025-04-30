@@ -4,6 +4,8 @@ from django.utils.html import escape
 import re
 import base64
 import urllib.parse
+from django.utils import timezone
+from datetime import timedelta
 
 # This is a file for all the template tags that were too hard to make work with precise_bbcode.
 # It is not a good practice to use this file, and will probably get very messy later on, but it is easier to understand for now.
@@ -59,3 +61,31 @@ def finalize_video_tags(value):
     
     processed_text = re.sub(pattern, replace_placeholder, value)
     return mark_safe(processed_text)
+
+@register.filter(name='is_within_minutes')
+def is_within_minutes(value, minutes):
+    """
+    Checks if a datetime value is within the last N minutes from now.
+    Returns True if the value is recent (within the specified minutes), False otherwise.
+    """
+    if not value:
+        return False # Handle cases where last_login might be None
+
+    try:
+        minutes = int(minutes)
+    except (ValueError, TypeError):
+        return False # Invalid argument
+
+    now = timezone.now()
+
+    # Ensure timezone consistency if needed (important if settings.USE_TZ = True)
+    if timezone.is_aware(now) and timezone.is_naive(value):
+        # Assuming value should be in the default timezone if naive
+        # You might need to adjust this based on your application's timezone handling
+        value = timezone.make_aware(value, timezone.get_default_timezone())
+    elif timezone.is_naive(now) and timezone.is_aware(value):
+         # Less likely if USE_TZ=True, but handle for completeness
+         now = timezone.make_aware(now, timezone.get_default_timezone())
+
+    # Check if the datetime is greater than or equal to the time 'minutes' ago
+    return value >= (now - timedelta(minutes=minutes))
