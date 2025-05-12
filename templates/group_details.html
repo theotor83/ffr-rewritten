@@ -165,36 +165,7 @@
                         &nbsp;<br>
                     </td>
                     <td align="right" valign="top" nowrap="nowrap">
-                        <form method="get" name="jumpbox" action="{% url 'jumpbox-redirect' %}"
-                            onsubmit="if(document.jumpbox.f.value == -1){return false;}">
-                            <table cellspacing="0" cellpadding="0" border="0">
-                                <tbody>
-                                    <tr>
-                                        <td nowrap="nowrap"><span class="gensmall">Sauter vers:&nbsp;<select name="f"
-                                            onchange="if(this.options[this.selectedIndex].value != -1){ forms['jumpbox'].submit() }">
-                                            <option value="-1">Sélectionner un forum</option>
-                                            <option value="-1">----------------</option>
-                                            <option value="c1">Présentation</option>
-                                            <option value="f1">&nbsp; &nbsp;Présente-toi ici !</option>
-                                            <option value="c2">Five Nights At Freddy's</option>
-                                            <option value="f2">&nbsp; &nbsp;Théories</option>
-                                            <option value="f3">&nbsp; &nbsp;Animatroniques</option>
-                                            <option value="f4">&nbsp; &nbsp;Dessins et Fanarts</option>
-                                            <option value="c3">Les jeux</option>
-                                            <option value="f5">&nbsp; &nbsp;Five Nights At Freddy's</option>
-                                            <option value="f6">&nbsp; &nbsp;Five Nights At Freddy's 2</option>
-                                            <option value="f7">&nbsp; &nbsp;Five Nights At Freddy's 3</option>
-                                            <option value="f8">&nbsp; &nbsp;Five Nights At Freddy's 4</option>
-                                            <option value="f9">&nbsp; &nbsp;FNaF World</option>
-                                            <option value="f10">&nbsp; &nbsp;Les Fan-Games</option>
-                                            <option value="f11">&nbsp; &nbsp;Sister Location</option>
-                                            </select>&nbsp;<input type="submit" value="Aller" class="liteoption"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </form>
-                        <span class="gensmall"></span>
+                        {% include "includes/_jumpbox.html" %}
                     </td>
                 </tr>
             </tbody>
