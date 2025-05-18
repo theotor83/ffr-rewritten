@@ -329,6 +329,18 @@ class Post(models.Model):
             page_number = (index // 15) + 1
             return page_number
         return None
+    
+    @property
+    def get_relative_id(self):
+        """Get the relative ID of this post in the topic."""
+        if self.topic:
+            # Get all posts in the topic, ordered by created time
+            posts = list(self.topic.replies.all().order_by('created_time'))
+            # Find the index of this post in the list
+            index = posts.index(self)
+            # Return the relative ID (1-based)
+            return index + 1
+        return None
 
     def save(self, *args, **kwargs):
 
